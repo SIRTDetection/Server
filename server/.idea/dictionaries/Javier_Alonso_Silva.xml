@@ -4,7 +4,9 @@
       <w>mobilenet</w>
       <w>rcnn</w>
       <w>resnet</w>
+      <w>sirt</w>
       <w>tensorflow</w>
+      <w>webhook</w>
     </words>
   </dictionary>
 </component>
