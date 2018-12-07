@@ -1,7 +1,7 @@
 import os
 
-from datetime import datetime, timedelta
-from flask import Flask, request, abort, jsonify
+from datetime import datetime
+from flask import Flask, request, jsonify, send_file
 
 
 def genTokens() -> list:
@@ -85,43 +85,24 @@ class WebHook(object):
         image = Image.open(BytesIO(str_img))
         image_with_boxes = None  # TODO - here TensorFlow is called and process the image
         boxed_image = Image.fromarray(image_with_boxes, "RGB")
+        image_io = BytesIO()
+        boxed_image.save(image_io, "PNG", quality=100)
+        image_io.seek(0)
+        return send_file(image_io, mimetype="image/png")
 
-        return jsonify({"status": "success",
-                        "boxed_image": image_with_boxes}), 200
-
-
-# tokens = []
-
-
-"""@app.route("/sirt", methods=["GET", "POST"])
-def webhook():
-    if request.method == "GET":
-        token = request.args.get("token")
-        if token in tokens:
-            authorised_clients[request.remote_addr] = datetime.now()
-            return jsonify({"status": "success"}), 200
-        else:
-            return jsonify({"status": "failed"}), 401
-    elif request.method == "POST":
-        client = request.remote_addr
-        if client in authorised_clients:
-            if datetime.now() - authorised_clients.get(client) > timedelta(hours=10):
-                authorised_clients.pop(client)
-                return jsonify({"status": "auth timeout"}), 401
-            else:
-                print(request.json)
-                return jsonify({"status": "success"}), 200
-        else:
-            return jsonify({"status": "not authorised"}), 401
-    else:
-        abort(400)
-
-
-if __name__ == '__main__':
-    if len(tokens) == 0:
-        print("Generating tokens...")
-        tokens = genTokens()
-        print("Tokens: %s" % tokens)
-    else:
-        print(tokens)
-    app.run()"""
+    # @app.route("/sirt/training", methods=["POST"])
+    # def train(self):
+    #     from io import BytesIO
+    #     from PIL import Image
+    #
+    #     token = request.args.get("token")
+    #     if token not in self.__tokens:
+    #         return jsonify({"status": "unauthorized"}), 403
+    #     else:
+    #         uuid = ""
+    #         for key, value in self.__clients.items():
+    #             if value["token"] == token
+    #                 uuid = key
+    #     self.__clients[uuid]["latest_connection"] = datetime.now()
+    #     self.updateFiles()
+    #     str_img = request.data

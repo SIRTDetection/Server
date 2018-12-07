@@ -19,6 +19,9 @@ from PIL import Image
 from .object_detection.utils import (ops as utils_ops,
                                      label_map_util,
                                      visualization_utils as vis_utils)
+from .utils.Constants import (M_DEFAULT_MODEL,
+                              M_GRAPH,
+                              M_LABELS)
 
 __program_name__ = """TensorFlow Server client"""
 __program_executable__ = "TensorflowServer"
@@ -40,7 +43,7 @@ def main(arg):
     use_faster_rcnn = arg.faster_rcnn
     custom_model = arg.custom
 
-    default_model = "ssd_mobilenet_v2_quantized_300x300_coco_2018_09_14"
+    # default_model = "ssd_mobilenet_v2_quantized_300x300_coco_2018_09_14"
     download_base_url = "http://download.tensorflow.org/models/object_detection/"
     download_extension = ".tar.gz"
 
@@ -49,20 +52,20 @@ def main(arg):
     if use_mobilenet_v1:
         model_name = "ssd_mobilenet_v1_ppn_shared_box_predictor_300x300_coco14_sync_2018_07_03"
     elif use_mobilenet_v2:
-        model_name = default_model
+        model_name = M_DEFAULT_MODEL
     elif use_faster_rcnn:
         model_name = "faster_rcnn_resnet101_coco_2018_01_28.tar.gz"
     elif custom_model is not None:
         model_name = custom_model
     else:
-        model_name = default_model
+        model_name = M_DEFAULT_MODEL
 
     download_url = download_base_url + model_name + download_extension
     if not is_website_available(download_url):
         raise ConnectionError("The following URL: \"" + download_url + "\" is not valid!")
 
-    path_to_frozen_graph = model_name + "/frozen_inference_graph.pb"
-    path_to_labels = os.path.join("data", "mscoco_label_map.pbtxt")
+    path_to_frozen_graph = model_name + "/" + M_GRAPH
+    path_to_labels = os.path.join("data", M_LABELS)
 
     if not os.path.exists(path_to_frozen_graph):
         downloader = urllib.request.URLopener()
@@ -70,7 +73,7 @@ def main(arg):
         tar_file = tarfile.open(model_name + download_extension)
         for file in tar_file.getmembers():
             filename = os.path.basename(file.name)
-            if "frozen_inference_graph.pb" in filename:
+            if M_GRAPH in filename:
                 tar_file.extract(file, os.getcwd())
 
 
