@@ -20,10 +20,10 @@ from __future__ import print_function
 
 import tensorflow as tf
 from absl.testing import parameterized
-from object_detection import eval_util
-from object_detection.core import standard_fields as fields
-from object_detection.protos import eval_pb2
-from object_detection.utils import test_case
+from TensorflowServer.object_detection import eval_util
+from TensorflowServer.object_detection.core import standard_fields as fields
+from TensorflowServer.object_detection.protos import eval_pb2
+from TensorflowServer.object_detection.utils import test_case
 
 
 class EvalUtilTest(test_case.TestCase, parameterized.TestCase):

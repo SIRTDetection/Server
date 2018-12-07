@@ -24,11 +24,11 @@ import os
 import numpy as np
 import tensorflow as tf
 from absl.testing import parameterized
-from object_detection import inputs
-from object_detection.core import preprocessor
-from object_detection.core import standard_fields as fields
-from object_detection.utils import config_util
-from object_detection.utils import test_case
+from TensorflowServer.object_detection import inputs
+from TensorflowServer.object_detection.core import preprocessor
+from TensorflowServer.object_detection.core import standard_fields as fields
+from TensorflowServer.object_detection.utils import config_util
+from TensorflowServer.object_detection.utils import test_case
 
 FLAGS = tf.flags.FLAGS
 

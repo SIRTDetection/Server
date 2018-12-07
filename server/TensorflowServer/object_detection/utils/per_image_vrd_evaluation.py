@@ -21,8 +21,8 @@ detection subtask or on relation detection subtask.
 """
 import numpy as np
 
-from object_detection.utils import np_box_list
-from object_detection.utils import np_box_list_ops
+from TensorflowServer.object_detection.utils import np_box_list
+from TensorflowServer.object_detection.utils import np_box_list_ops
 
 
 class PerImageVRDEvaluation(object):

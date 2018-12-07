@@ -68,12 +68,12 @@ import inspect
 import sys
 
 import tensorflow as tf
-from object_detection.core import box_list
-from object_detection.core import box_list_ops
-from object_detection.core import keypoint_ops
-from object_detection.core import preprocessor_cache
-from object_detection.core import standard_fields as fields
-from object_detection.utils import shape_utils
+from TensorflowServer.object_detection.core import box_list
+from TensorflowServer.object_detection.core import box_list_ops
+from TensorflowServer.object_detection.core import keypoint_ops
+from TensorflowServer.object_detection.core import preprocessor_cache
+from TensorflowServer.object_detection.core import standard_fields as fields
+from TensorflowServer.object_detection.utils import shape_utils
 from tensorflow.python.ops import control_flow_ops
 
 

@@ -17,7 +17,7 @@
 import collections
 
 import tensorflow as tf
-from object_detection.core import prefetcher
+from TensorflowServer.object_detection.core import prefetcher
 
 rt_shape_str = '_runtime_shapes'
 

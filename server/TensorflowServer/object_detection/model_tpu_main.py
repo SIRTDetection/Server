@@ -24,8 +24,8 @@ from __future__ import print_function
 
 import tensorflow as tf
 from absl import flags
-from object_detection import model_hparams
-from object_detection import model_lib
+from TensorflowServer.object_detection import model_hparams
+from TensorflowServer.object_detection import model_lib
 
 tf.flags.DEFINE_bool('use_tpu', True, 'Use TPUs rather than plain CPUs')
 

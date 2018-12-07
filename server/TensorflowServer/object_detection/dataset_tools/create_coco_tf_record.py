@@ -40,9 +40,9 @@ import PIL.Image
 import contextlib2
 import numpy as np
 import tensorflow as tf
-from object_detection.dataset_tools import tf_record_creation_util
-from object_detection.utils import dataset_util
-from object_detection.utils import label_map_util
+from TensorflowServer.object_detection.dataset_tools import tf_record_creation_util
+from TensorflowServer.object_detection.utils import dataset_util
+from TensorflowServer.object_detection.utils import label_map_util
 from pycocotools import mask
 
 flags = tf.app.flags

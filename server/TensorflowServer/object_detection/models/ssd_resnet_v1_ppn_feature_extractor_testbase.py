@@ -17,7 +17,7 @@ import abc
 
 import numpy as np
 import tensorflow as tf
-from object_detection.models import ssd_feature_extractor_test
+from TensorflowServer.object_detection.models import ssd_feature_extractor_test
 
 
 class SSDResnetPpnFeatureExtractorTestBase(

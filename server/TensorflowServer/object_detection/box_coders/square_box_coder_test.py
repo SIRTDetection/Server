@@ -17,8 +17,8 @@
 
 import tensorflow as tf
 
-from object_detection.box_coders import square_box_coder
-from object_detection.core import box_list
+from TensorflowServer.object_detection.box_coders import square_box_coder
+from TensorflowServer.object_detection.core import box_list
 
 
 class SquareBoxCoderTest(tf.test.TestCase):

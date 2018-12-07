@@ -96,17 +96,17 @@ from abc import abstractmethod
 from functools import partial
 
 import tensorflow as tf
-from object_detection.anchor_generators import grid_anchor_generator
-from object_detection.builders import box_predictor_builder
-from object_detection.core import box_list
-from object_detection.core import box_list_ops
-from object_detection.core import box_predictor
-from object_detection.core import losses
-from object_detection.core import model
-from object_detection.core import standard_fields as fields
-from object_detection.core import target_assigner
-from object_detection.utils import ops
-from object_detection.utils import shape_utils
+from TensorflowServer.object_detection.anchor_generators import grid_anchor_generator
+from TensorflowServer.object_detection.builders import box_predictor_builder
+from TensorflowServer.object_detection.core import box_list
+from TensorflowServer.object_detection.core import box_list_ops
+from TensorflowServer.object_detection.core import box_predictor
+from TensorflowServer.object_detection.core import losses
+from TensorflowServer.object_detection.core import model
+from TensorflowServer.object_detection.core import standard_fields as fields
+from TensorflowServer.object_detection.core import target_assigner
+from TensorflowServer.object_detection.utils import ops
+from TensorflowServer.object_detection.utils import shape_utils
 
 slim = tf.contrib.slim
 

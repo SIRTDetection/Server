@@ -41,9 +41,9 @@ import os
 import contextlib2
 import pandas as pd
 import tensorflow as tf
-from object_detection.dataset_tools import oid_tfrecord_creation
-from object_detection.dataset_tools import tf_record_creation_util
-from object_detection.utils import label_map_util
+from TensorflowServer.object_detection.dataset_tools import oid_tfrecord_creation
+from TensorflowServer.object_detection.dataset_tools import tf_record_creation_util
+from TensorflowServer.object_detection.utils import label_map_util
 
 tf.flags.DEFINE_string('input_box_annotations_csv', None,
                        'Path to CSV containing image bounding box annotations')

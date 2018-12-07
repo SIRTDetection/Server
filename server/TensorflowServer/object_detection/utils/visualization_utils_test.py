@@ -20,8 +20,8 @@ import os
 import PIL.Image as Image
 import numpy as np
 import tensorflow as tf
-from object_detection.core import standard_fields as fields
-from object_detection.utils import visualization_utils
+from TensorflowServer.object_detection.core import standard_fields as fields
+from TensorflowServer.object_detection.utils import visualization_utils
 
 _TESTDATA_PATH = 'object_detection/test_images'
 

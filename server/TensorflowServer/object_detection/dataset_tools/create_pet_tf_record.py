@@ -38,9 +38,9 @@ import contextlib2
 import numpy as np
 import tensorflow as tf
 from lxml import etree
-from object_detection.dataset_tools import tf_record_creation_util
-from object_detection.utils import dataset_util
-from object_detection.utils import label_map_util
+from TensorflowServer.object_detection.dataset_tools import tf_record_creation_util
+from TensorflowServer.object_detection.utils import dataset_util
+from TensorflowServer.object_detection.utils import label_map_util
 
 flags = tf.app.flags
 flags.DEFINE_string('data_dir', '', 'Root directory to raw pet dataset.')

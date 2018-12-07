@@ -20,10 +20,10 @@ import os
 import numpy as np
 import tensorflow as tf
 from google.protobuf import text_format
-from object_detection.builders import input_reader_builder
-from object_detection.core import standard_fields as fields
-from object_detection.protos import input_reader_pb2
-from object_detection.utils import dataset_util
+from TensorflowServer.object_detection.builders import input_reader_builder
+from TensorflowServer.object_detection.core import standard_fields as fields
+from TensorflowServer.object_detection.protos import input_reader_pb2
+from TensorflowServer.object_detection.utils import dataset_util
 
 
 class InputReaderBuilderTest(tf.test.TestCase):

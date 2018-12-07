@@ -30,9 +30,9 @@ from abc import ABCMeta
 from abc import abstractmethod
 
 import tensorflow as tf
-from object_detection.core import box_list
-from object_detection.core import box_list_ops
-from object_detection.utils import ops
+from TensorflowServer.object_detection.core import box_list
+from TensorflowServer.object_detection.core import box_list_ops
+from TensorflowServer.object_detection.utils import ops
 
 slim = tf.contrib.slim
 

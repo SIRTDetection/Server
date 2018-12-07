@@ -17,7 +17,7 @@
 import numpy as np
 import tensorflow as tf
 
-from object_detection.core import matcher
+from TensorflowServer.object_detection.core import matcher
 
 
 class MatchTest(tf.test.TestCase):

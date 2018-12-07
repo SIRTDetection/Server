@@ -17,7 +17,7 @@
 import numpy as np
 import tensorflow as tf
 
-from object_detection.core import freezable_batch_norm
+from TensorflowServer.object_detection.core import freezable_batch_norm
 
 
 class FreezableBatchNormTest(tf.test.TestCase):

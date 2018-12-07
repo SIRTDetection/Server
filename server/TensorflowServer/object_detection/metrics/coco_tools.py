@@ -45,7 +45,7 @@ from collections import OrderedDict
 
 import numpy as np
 import tensorflow as tf
-from object_detection.utils import json_utils
+from TensorflowServer.object_detection.utils import json_utils
 from pycocotools import coco
 from pycocotools import cocoeval
 from pycocotools import mask

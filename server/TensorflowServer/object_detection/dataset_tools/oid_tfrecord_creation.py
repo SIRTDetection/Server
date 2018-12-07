@@ -19,8 +19,8 @@ from __future__ import division
 from __future__ import print_function
 
 import tensorflow as tf
-from object_detection.core import standard_fields
-from object_detection.utils import dataset_util
+from TensorflowServer.object_detection.core import standard_fields
+from TensorflowServer.object_detection.utils import dataset_util
 
 
 def tf_example_from_annotations_data_frame(annotations_data_frame, label_map,

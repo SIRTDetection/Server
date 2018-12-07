@@ -20,9 +20,9 @@ import six
 
 import tensorflow as tf
 
-from object_detection.core import preprocessor
-from object_detection.core import preprocessor_cache
-from object_detection.core import standard_fields as fields
+from TensorflowServer.object_detection.core import preprocessor
+from TensorflowServer.object_detection.core import preprocessor_cache
+from TensorflowServer.object_detection.core import standard_fields as fields
 
 if six.PY2:
     import mock  # pylint: disable=g-import-not-at-top

@@ -23,7 +23,7 @@ https://arxiv.org/abs/1707.07012
 import tensorflow as tf
 from nets.nasnet import nasnet
 from nets.nasnet import nasnet_utils
-from object_detection.meta_architectures import faster_rcnn_meta_arch
+from TensorflowServer.object_detection.meta_architectures import faster_rcnn_meta_arch
 
 arg_scope = tf.contrib.framework.arg_scope
 slim = tf.contrib.slim

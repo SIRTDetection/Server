@@ -46,12 +46,12 @@ import functools
 import os
 
 import tensorflow as tf
-from object_detection.builders import dataset_builder
-from object_detection.builders import graph_rewriter_builder
-from object_detection.builders import model_builder
-from object_detection.legacy import evaluator
-from object_detection.utils import config_util
-from object_detection.utils import label_map_util
+from TensorflowServer.object_detection.builders import dataset_builder
+from TensorflowServer.object_detection.builders import graph_rewriter_builder
+from TensorflowServer.object_detection.builders import model_builder
+from TensorflowServer.object_detection.legacy import evaluator
+from TensorflowServer.object_detection.utils import config_util
+from TensorflowServer.object_detection.utils import label_map_util
 
 tf.logging.set_verbosity(tf.logging.INFO)
 

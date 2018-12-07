@@ -23,12 +23,12 @@ import os
 
 import numpy as np
 import tensorflow as tf
-from object_detection import inputs
-from object_detection import model_hparams
-from object_detection import model_lib
-from object_detection.builders import model_builder
-from object_detection.core import standard_fields as fields
-from object_detection.utils import config_util
+from TensorflowServer.object_detection import inputs
+from TensorflowServer.object_detection import model_hparams
+from TensorflowServer.object_detection import model_lib
+from TensorflowServer.object_detection.builders import model_builder
+from TensorflowServer.object_detection.core import standard_fields as fields
+from TensorflowServer.object_detection.utils import config_util
 from tensorflow.contrib.tpu.python.tpu import tpu_config
 from tensorflow.contrib.tpu.python.tpu import tpu_estimator
 

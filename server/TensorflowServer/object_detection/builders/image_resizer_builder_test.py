@@ -16,8 +16,8 @@
 import numpy as np
 import tensorflow as tf
 from google.protobuf import text_format
-from object_detection.builders import image_resizer_builder
-from object_detection.protos import image_resizer_pb2
+from TensorflowServer.object_detection.builders import image_resizer_builder
+from TensorflowServer.object_detection.protos import image_resizer_pb2
 
 
 class ImageResizerBuilderTest(tf.test.TestCase):

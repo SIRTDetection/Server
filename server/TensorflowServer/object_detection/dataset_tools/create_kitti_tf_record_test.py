@@ -20,7 +20,7 @@ import os
 import PIL.Image
 import numpy as np
 import tensorflow as tf
-from object_detection.dataset_tools import create_kitti_tf_record
+from TensorflowServer.object_detection.dataset_tools import create_kitti_tf_record
 
 
 class CreateKittiTFRecordTest(tf.test.TestCase):

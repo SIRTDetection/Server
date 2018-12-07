@@ -18,10 +18,10 @@ import os
 
 import numpy as np
 import tensorflow as tf
-from object_detection.core import standard_fields as fields
-from object_detection.data_decoders import tf_example_decoder
-from object_detection.protos import input_reader_pb2
-from object_detection.utils import dataset_util
+from TensorflowServer.object_detection.core import standard_fields as fields
+from TensorflowServer.object_detection.data_decoders import tf_example_decoder
+from TensorflowServer.object_detection.protos import input_reader_pb2
+from TensorflowServer.object_detection.utils import dataset_util
 from tensorflow.python.framework import test_util
 
 slim_example_decoder = tf.contrib.slim.tfexample_decoder

@@ -17,7 +17,7 @@
 import os
 
 import tensorflow as tf
-from object_detection.utils import variables_helper
+from TensorflowServer.object_detection.utils import variables_helper
 
 
 class FilterVariablesTest(tf.test.TestCase):

@@ -17,10 +17,10 @@
 import tensorflow as tf
 
 from google.protobuf import text_format
-from object_detection.builders import hyperparams_builder
-from object_detection.predictors.heads import mask_head
-from object_detection.protos import hyperparams_pb2
-from object_detection.utils import test_case
+from TensorflowServer.object_detection.builders import hyperparams_builder
+from TensorflowServer.object_detection.predictors.heads import mask_head
+from TensorflowServer.object_detection.protos import hyperparams_pb2
+from TensorflowServer.object_detection.utils import test_case
 
 
 class MaskRCNNMaskHeadTest(test_case.TestCase):

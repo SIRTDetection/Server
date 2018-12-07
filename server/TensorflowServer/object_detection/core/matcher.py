@@ -35,7 +35,7 @@ from abc import ABCMeta
 from abc import abstractmethod
 
 import tensorflow as tf
-from object_detection.utils import ops
+from TensorflowServer.object_detection.utils import ops
 
 
 class Match(object):

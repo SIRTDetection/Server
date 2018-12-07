@@ -16,7 +16,7 @@
 from __future__ import division
 
 import tensorflow as tf
-from object_detection.core import standard_fields
+from TensorflowServer.object_detection.core import standard_fields
 
 
 def build_input(tfrecord_paths):

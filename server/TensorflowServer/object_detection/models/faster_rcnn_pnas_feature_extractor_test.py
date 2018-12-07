@@ -17,7 +17,7 @@
 
 import tensorflow as tf
 
-from object_detection.models import faster_rcnn_pnas_feature_extractor as frcnn_pnas
+from TensorflowServer.object_detection.models import faster_rcnn_pnas_feature_extractor as frcnn_pnas
 
 
 class FasterRcnnPNASFeatureExtractorTest(tf.test.TestCase):

@@ -20,9 +20,9 @@ import StringIO
 import numpy as np
 import tensorflow as tf
 from PIL import Image
-from object_detection.core import standard_fields
-from object_detection.inference import detection_inference
-from object_detection.utils import dataset_util
+from TensorflowServer.object_detection.core import standard_fields
+from TensorflowServer.object_detection.inference import detection_inference
+from TensorflowServer.object_detection.utils import dataset_util
 
 
 def get_mock_tfrecord_path():

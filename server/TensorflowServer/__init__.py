@@ -1,20 +1,8 @@
-import numpy as np
-import matplotlib
-
-matplotlib.use("Agg")  # pylint: disable=multiple-statements
 import os
 import six.moves.urllib as urllib
-import sys
 import tarfile
-import tensorflow as tf
-import zipfile
 
-from distutils.version import StrictVersion
 from argparse import ArgumentParser
-from collections import defaultdict
-from io import StringIO
-from matplotlib import pyplot as plt
-from PIL import Image
 
 from .object_detection.utils import (ops as utils_ops,
                                      label_map_util,

@@ -20,9 +20,9 @@ import tensorflow as tf
 
 from google.protobuf import text_format
 
-from object_detection.builders import hyperparams_builder
-from object_detection.core import freezable_batch_norm
-from object_detection.protos import hyperparams_pb2
+from TensorflowServer.object_detection.builders import hyperparams_builder
+from TensorflowServer.object_detection.core import freezable_batch_norm
+from TensorflowServer.object_detection.protos import hyperparams_pb2
 
 slim = tf.contrib.slim
 

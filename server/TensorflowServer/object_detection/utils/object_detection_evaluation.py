@@ -34,10 +34,10 @@ from abc import ABCMeta
 from abc import abstractmethod
 
 import numpy as np
-from object_detection.core import standard_fields
-from object_detection.utils import label_map_util
-from object_detection.utils import metrics
-from object_detection.utils import per_image_evaluation
+from TensorflowServer.object_detection.core import standard_fields
+from TensorflowServer.object_detection.utils import label_map_util
+from TensorflowServer.object_detection.utils import metrics
+from TensorflowServer.object_detection.utils import per_image_evaluation
 
 
 class DetectionEvaluator(object):

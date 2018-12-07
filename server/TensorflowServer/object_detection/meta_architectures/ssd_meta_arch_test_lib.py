@@ -17,17 +17,17 @@
 import functools
 
 import tensorflow as tf
-from object_detection.core import anchor_generator
-from object_detection.core import balanced_positive_negative_sampler as sampler
-from object_detection.core import box_list
-from object_detection.core import losses
-from object_detection.core import post_processing
-from object_detection.core import region_similarity_calculator as sim_calc
-from object_detection.core import target_assigner
-from object_detection.meta_architectures import ssd_meta_arch
-from object_detection.utils import ops
-from object_detection.utils import test_case
-from object_detection.utils import test_utils
+from TensorflowServer.object_detection.core import anchor_generator
+from TensorflowServer.object_detection.core import balanced_positive_negative_sampler as sampler
+from TensorflowServer.object_detection.core import box_list
+from TensorflowServer.object_detection.core import losses
+from TensorflowServer.object_detection.core import post_processing
+from TensorflowServer.object_detection.core import region_similarity_calculator as sim_calc
+from TensorflowServer.object_detection.core import target_assigner
+from TensorflowServer.object_detection.meta_architectures import ssd_meta_arch
+from TensorflowServer.object_detection.utils import ops
+from TensorflowServer.object_detection.utils import test_case
+from TensorflowServer.object_detection.utils import test_utils
 
 slim = tf.contrib.slim
 keras = tf.keras.layers

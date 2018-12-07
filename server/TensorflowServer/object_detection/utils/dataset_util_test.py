@@ -18,7 +18,7 @@
 import os
 
 import tensorflow as tf
-from object_detection.utils import dataset_util
+from TensorflowServer.object_detection.utils import dataset_util
 
 
 class DatasetUtilTest(tf.test.TestCase):
