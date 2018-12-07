@@ -44,12 +44,12 @@ class WebHook(object):
         with open("clients") as clients:
             pickle.dump(self.__clients, clients, pickle.HIGHEST_PROTOCOL)
 
-    @app.route("/device/<uuid: device_uuid>", methods=["GET"])
-    def registerDeviceOrGetToken(self, device_uuid):
-        if device_uuid in self.__clients:
-            self.__clients[device_uuid]["latest_connection"] = datetime.now()
+    @app.route("/device/<uuid>", methods=["GET"])
+    def registerDeviceOrGetToken(self, uuid: str):
+        if uuid in self.__clients:
+            self.__clients[uuid]["latest_connection"] = datetime.now()
             self.updateFiles()
-            return jsonify({"token": self.__clients[device_uuid]["token"],
+            return jsonify({"token": self.__clients[uuid]["token"],
                             "status": 200}), 200
         else:
             if len(self.__clients.keys()) >= 10:
@@ -62,11 +62,11 @@ class WebHook(object):
                         token = current_token
                         current_token["used"] = True
                         break
-                self.__clients[device_uuid] = {"token": token,
+                self.__clients[uuid] = {"token": token,
                                                "first_connection": datetime.now(),
                                                "latest_connection": datetime.now()}
                 self.updateFiles()
-                return jsonify({"token": self.__clients[device_uuid]["token"],
+                return jsonify({"token": self.__clients[uuid]["token"],
                                 "status": 200}), 200
 
     @app.route("/sirt", methods=["POST"])
