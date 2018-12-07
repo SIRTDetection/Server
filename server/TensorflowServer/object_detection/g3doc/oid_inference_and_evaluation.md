@@ -41,7 +41,7 @@ download ground truth boxes from the [Open Images
 website](https://github.com/openimages/dataset):
 
 ```bash
-# From tensorflow/models/research
+tensorflow_worker
 mkdir oid
 cd oid
 wget https://storage.googleapis.com/openimages/2017_07/annotations_human_bbox_2017_07.tar.gz
@@ -173,7 +173,7 @@ TensorFlow devices on possibly multiple machines. The script below uses
 process for each GPU on different partition of the input data.
 
 ```bash
-# From tensorflow/models/research/oid
+tensorflow_worker
 SPLIT=validation  # or test
 NUM_GPUS=4
 NUM_SHARDS=100
@@ -204,7 +204,7 @@ To compute evaluation measures on the inferred detections you first need to
 create the appropriate configuration files:
 
 ```bash
-# From tensorflow/models/research/oid
+tensorflow_worker
 SPLIT=validation  # or test
 NUM_SHARDS=1  # Set to NUM_GPUS if using the parallel evaluation script above
 

@@ -102,7 +102,7 @@ Storage so the data can be accessed by ML Engine. Run the following command to
 copy the files into your GCS bucket (substituting `${YOUR_GCS_BUCKET}`):
 
 ```bash
-# From tensorflow/models/research/
+tensorflow_worker
 gsutil cp pet_faces_train.record-* gs://${YOUR_GCS_BUCKET}/data/
 gsutil cp pet_faces_val.record-* gs://${YOUR_GCS_BUCKET}/data/
 gsutil cp object_detection/data/pet_label_map.pbtxt gs://${YOUR_GCS_BUCKET}/data/pet_label_map.pbtxt

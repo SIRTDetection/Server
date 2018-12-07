@@ -15,7 +15,7 @@
 
 """Bounding Box List definition.
 
-BoxList represents a list of bounding boxes as tensorflow
+BoxList represents a list of bounding boxes as tensorflow_worker
 tensors, where each bounding box is represented as a row of 4 numbers,
 [y_min, x_min, y_max, x_max].  It is assumed that all bounding boxes
 within a given list correspond to a single image.  See also
@@ -29,7 +29,7 @@ We assume the following things to be true about fields:
   (i.e., not None) at graph construction time.
 
 Some other notes:
-  * Following tensorflow conventions, we use height, width ordering,
+  * Following tensorflow_worker conventions, we use height, width ordering,
   and correspondingly, y,x (or ymin, xmin, ymax, xmax) ordering
   * Tensors are always provided as (flat) [N, 4] tensors.
 """

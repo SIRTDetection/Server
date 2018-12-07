@@ -50,7 +50,7 @@ def write_metrics(metrics, global_step, summary_dir):
     Args:
       metrics: A dictionary containing metric names and values.
       global_step: Global step at which the metrics are computed.
-      summary_dir: Directory to write tensorflow summaries to.
+      summary_dir: Directory to write tensorflow_worker summaries to.
     """
     tf.logging.info('Writing metrics to tf summary.')
     summary_writer = tf.summary.FileWriterCache.get(summary_dir)
@@ -235,7 +235,7 @@ def _run_checkpoint_once(tensor_dict,
       batch_processor: a function taking four arguments:
         1. tensor_dict: the same tensor_dict that is passed in as the first
           argument to this function.
-        2. sess: a tensorflow session
+        2. sess: a tensorflow_worker session
         3. batch_index: an integer representing the index of the batch amongst
           all batches
         By default, batch_processor is None, which defaults to running:
@@ -393,7 +393,7 @@ def repeated_checkpoint_run(tensor_dict,
       batch_processor: a function taking three arguments:
         1. tensor_dict: the same tensor_dict that is passed in as the first
           argument to this function.
-        2. sess: a tensorflow session
+        2. sess: a tensorflow_worker session
         3. batch_index: an integer representing the index of the batch amongst
           all batches
         By default, batch_processor is None, which defaults to running:

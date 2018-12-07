@@ -13,7 +13,7 @@
 # limitations under the License.
 # ==============================================================================
 
-"""A module for helper tensorflow ops."""
+"""A module for helper tensorflow_worker ops."""
 import math
 
 import numpy as np
@@ -500,7 +500,7 @@ def normalize_to_target(inputs,
       epsilon: A small value to add to the inputs to avoid dividing by zero.
       trainable: Whether the norm is trainable or not
       scope: Optional scope for variable_scope.
-      summarize: Whether or not to add a tensorflow summary for the op.
+      summarize: Whether or not to add a tensorflow_worker summary for the op.
 
     Returns:
       The input tensor normalized to the specified target norm.

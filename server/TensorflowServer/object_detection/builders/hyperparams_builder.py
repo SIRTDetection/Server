@@ -340,7 +340,7 @@ def _build_initializer(initializer, build_for_keras=False):
                     distribution='uniform')
             else:
                 # In TF 1.9 release and earlier, the truncated_normal distribution was
-                # not supported correctly. So, in these earlier versions of tensorflow,
+                # not supported correctly. So, in these earlier versions of tensorflow_worker,
                 # the ValueError will be raised, and we manually truncate the
                 # distribution scale.
                 #

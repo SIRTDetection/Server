@@ -30,12 +30,12 @@ class TestCase(tf.test.TestCase):
         """Constructs the graph, executes it on TPU and returns the result.
 
         Args:
-          graph_fn: a callable that constructs the tensorflow graph to test. The
+          graph_fn: a callable that constructs the tensorflow_worker graph to test. The
             arguments of this function should correspond to `inputs`.
           inputs: a list of numpy arrays to feed input to the computation graph.
 
         Returns:
-          A list of numpy arrays or a scalar returned from executing the tensorflow
+          A list of numpy arrays or a scalar returned from executing the tensorflow_worker
           graph.
         """
         with self.test_session(graph=tf.Graph()) as sess:
@@ -58,12 +58,12 @@ class TestCase(tf.test.TestCase):
         """Constructs the graph, executes it on CPU and returns the result.
 
         Args:
-          graph_fn: a callable that constructs the tensorflow graph to test. The
+          graph_fn: a callable that constructs the tensorflow_worker graph to test. The
             arguments of this function should correspond to `inputs`.
           inputs: a list of numpy arrays to feed input to the computation graph.
 
         Returns:
-          A list of numpy arrays or a scalar returned from executing the tensorflow
+          A list of numpy arrays or a scalar returned from executing the tensorflow_worker
           graph.
         """
         with self.test_session(graph=tf.Graph()) as sess:
@@ -87,12 +87,12 @@ class TestCase(tf.test.TestCase):
         The graph is executed either on TPU or CPU based on the `tpu_test` flag.
 
         Args:
-          graph_fn: a callable that constructs the tensorflow graph to test. The
+          graph_fn: a callable that constructs the tensorflow_worker graph to test. The
             arguments of this function should correspond to `inputs`.
           inputs: a list of numpy arrays to feed input to the computation graph.
 
         Returns:
-          A list of numpy arrays or a scalar returned from executing the tensorflow
+          A list of numpy arrays or a scalar returned from executing the tensorflow_worker
           graph.
         """
         if FLAGS.tpu_test:

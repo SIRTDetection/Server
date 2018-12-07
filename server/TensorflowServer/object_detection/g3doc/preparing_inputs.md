@@ -13,7 +13,7 @@ To download, extract and convert it to TFRecords, run the following commands
 below:
 
 ```bash
-# From tensorflow/models/research/
+tensorflow_worker
 wget http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar
 tar -xvf VOCtrainval_11-May-2012.tar
 python object_detection/dataset_tools/create_pascal_tf_record.py \

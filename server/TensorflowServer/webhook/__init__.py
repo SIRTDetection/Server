@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from flask import Flask, request, jsonify, send_file
 
-from ..tensorflow import Tensorflow
+from ..tensorflow_worker import Tensorflow
 
 
 def genTokens() -> list:

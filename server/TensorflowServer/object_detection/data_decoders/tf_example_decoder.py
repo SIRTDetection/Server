@@ -14,7 +14,7 @@
 # ==============================================================================
 """Tensorflow Example proto decoder for object detection.
 
-A decoder to decode string tensors containing serialized tensorflow.Example
+A decoder to decode string tensors containing serialized tensorflow_worker.Example
 protos for object detection.
 """
 import tensorflow as tf
@@ -312,10 +312,10 @@ class TfExampleDecoder(data_decoder.DataDecoder):
             fields.InputDataFields.groundtruth_image_classes] = image_label_handler
 
     def decode(self, tf_example_string_tensor):
-        """Decodes serialized tensorflow example and returns a tensor dictionary.
+        """Decodes serialized tensorflow_worker example and returns a tensor dictionary.
 
         Args:
-          tf_example_string_tensor: a string tensor holding a serialized tensorflow
+          tf_example_string_tensor: a string tensor holding a serialized tensorflow_worker
             example proto.
 
         Returns:

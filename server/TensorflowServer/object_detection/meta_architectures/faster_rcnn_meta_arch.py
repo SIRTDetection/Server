@@ -14,7 +14,7 @@
 # ==============================================================================
 """Faster R-CNN meta-architecture definition.
 
-General tensorflow implementation of Faster R-CNN detection models.
+General tensorflow_worker implementation of Faster R-CNN detection models.
 
 See Faster R-CNN: Ren, Shaoqing, et al.
 "Faster R-CNN: Towards real-time object detection with region proposal
@@ -370,7 +370,7 @@ class FasterRCNNMetaArch(model.DetectionModel):
           parallel_iterations: (Optional) The number of iterations allowed to run
             in parallel for calls to tf.map_fn.
           add_summaries: boolean (default: True) controlling whether summary ops
-            should be added to tensorflow graph.
+            should be added to tensorflow_worker graph.
           clip_anchors_to_image: Normally, anchors generated for a given image size
             are pruned during training if they lie outside the image window. This
             option clips the anchors to be within the image instead of pruning.

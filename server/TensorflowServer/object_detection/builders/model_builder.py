@@ -109,7 +109,7 @@ def build(model_config, is_training, add_summaries=True):
       model_config: A model.proto object containing the config for the desired
         DetectionModel.
       is_training: True if this model is being built for training purposes.
-      add_summaries: Whether to add tensorflow summaries in the model graph.
+      add_summaries: Whether to add tensorflow_worker summaries in the model graph.
     Returns:
       DetectionModel based on the config.
 

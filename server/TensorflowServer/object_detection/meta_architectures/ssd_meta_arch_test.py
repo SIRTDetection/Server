@@ -517,7 +517,7 @@ class SsdMetaArchTest(ssd_meta_arch_test_lib.SSDMetaArchTestBase,
                 self.assertNotIn('FeatureExtractor', var)
 
     def test_restore_map_for_classification_ckpt(self, use_keras):
-        # Define mock tensorflow classification graph and save variables.
+        # Define mock tensorflow_worker classification graph and save variables.
         test_graph_classification = tf.Graph()
         with test_graph_classification.as_default():
             image = tf.placeholder(dtype=tf.float32, shape=[1, 20, 20, 3])
@@ -540,7 +540,7 @@ class SsdMetaArchTest(ssd_meta_arch_test_lib.SSDMetaArchTestBase,
                 sess.run(init_op)
                 saved_model_path = saver.save(sess, save_path)
 
-        # Create tensorflow detection graph and load variables from
+        # Create tensorflow_worker detection graph and load variables from
         # classification checkpoint.
         test_graph_detection = tf.Graph()
         with test_graph_detection.as_default():

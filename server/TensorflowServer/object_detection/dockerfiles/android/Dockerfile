@@ -15,7 +15,7 @@
 
 FROM tensorflow/tensorflow:nightly-devel
 
-# Get the tensorflow models research directory, and move it into tensorflow
+# Get the tensorflow_worker models research directory, and move it into tensorflow_worker
 # source folder to match recommendation of installation
 RUN git clone --depth 1 https://github.com/tensorflow/models.git && \
     mv models /tensorflow/models

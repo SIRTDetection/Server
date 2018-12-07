@@ -55,7 +55,7 @@ EVAL_DEFAULT_METRIC = 'pascal_voc_detection_metrics'
 def _extract_predictions_and_losses(model,
                                     create_input_dict_fn,
                                     ignore_groundtruth=False):
-    """Constructs tensorflow detection graph and returns output tensors.
+    """Constructs tensorflow_worker detection graph and returns output tensors.
 
     Args:
       model: model to perform predictions with.
@@ -196,7 +196,7 @@ def evaluate(create_input_dict_fn, create_model_fn, eval_config, categories,
 
         Args:
           tensor_dict: a dictionary of tensors
-          sess: tensorflow session
+          sess: tensorflow_worker session
           batch_index: the index of the batch amongst all batches in the run.
           counters: a dictionary holding 'success' and 'skipped' fields which can
             be updated to keep track of number of successful and failed runs,

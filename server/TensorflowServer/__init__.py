@@ -4,14 +4,14 @@ import tarfile
 
 from argparse import ArgumentParser
 
-from .object_detection.utils import (ops as utils_ops,
-                                     label_map_util,
-                                     visualization_utils as vis_utils)
-from .utils.Constants import (M_DEFAULT_MODEL,
-                              M_GRAPH,
-                              M_LABELS)
-from .tensorflow import Tensorflow
-from .webhook import WebHook
+from object_detection.utils import (ops as utils_ops,
+                                    label_map_util,
+                                    visualization_utils as vis_utils)
+from utils.Constants import (M_DEFAULT_MODEL,
+                             M_GRAPH,
+                             M_LABELS)
+from tensorflow_worker import Tensorflow
+from webhook import WebHook
 
 __program_name__ = """TensorFlow Server client"""
 __program_executable__ = "TensorflowServer"
@@ -34,7 +34,7 @@ def main(arg):
     custom_model = arg.custom
 
     # default_model = "ssd_mobilenet_v2_quantized_300x300_coco_2018_09_14"
-    download_base_url = "http://download.tensorflow.org/models/object_detection/"
+    download_base_url = "http://download.tensorflow_worker.org/models/object_detection/"
     download_extension = ".tar.gz"
 
     if use_mobilenet_v1 and use_mobilenet_v2 and use_faster_rcnn:
@@ -90,7 +90,7 @@ if __name__ == '__main__':
                                 "(omit '<', '>' characters):\n"
                                 "\"<model_name>_<extra_specs>_<release_date>\".\n"
                                 "You can find all the available models here: "
-                                "https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/"
+                                "https://github.com/tensorflow_worker/models/blob/master/research/object_detection/g3doc/"
                                 "detection_model_zoo.md#coco-trained-models")
     args = arguments.parse_args()
     try:
