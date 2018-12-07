@@ -25,6 +25,7 @@ looks for objects contained at the image given"""
 
 def is_website_available(url: str) -> bool:
     from urllib.request import urlopen
+    print(url)
     return urlopen(url).getcode() == 200
 
 
