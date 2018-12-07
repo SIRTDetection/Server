@@ -7,13 +7,13 @@ import tensorflow as tf
 from distutils.version import StrictVersion
 from PIL import Image
 
-from ..object_detection.utils import (ops as utils_ops,
-                                      label_map_util,
-                                      visualization_utils as vis_utils)
-from ..utils.Constants import (M_DEFAULT_MODEL,
-                               M_GRAPH,
-                               M_LABELS,
-                               T_KEYS)
+from TensorflowServer.object_detection.utils import (ops as utils_ops,
+                                                     label_map_util,
+                                                     visualization_utils as vis_utils)
+from TensorflowServer.utils.Constants import (M_DEFAULT_MODEL,
+                                              M_GRAPH,
+                                              M_LABELS,
+                                              T_KEYS)
 
 if StrictVersion(tf.__version__) < StrictVersion('1.9.0'):
     raise ImportError('Please upgrade your TensorFlow installation to v1.9.* or later!')

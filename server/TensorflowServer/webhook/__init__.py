@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from flask import Flask, request, jsonify, send_file
 
-from ..tensorflow_worker import Tensorflow
+from TensorflowServer.tensorflow_worker import Tensorflow
 
 
 def genTokens() -> list:
@@ -63,8 +63,8 @@ class WebHook(object):
                         current_token["used"] = True
                         break
                 self.__clients[uuid] = {"token": token,
-                                               "first_connection": datetime.now(),
-                                               "latest_connection": datetime.now()}
+                                        "first_connection": datetime.now(),
+                                        "latest_connection": datetime.now()}
                 self.updateFiles()
                 return jsonify({"token": self.__clients[uuid]["token"],
                                 "status": 200}), 200

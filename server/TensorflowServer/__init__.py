@@ -4,14 +4,14 @@ import tarfile
 
 from argparse import ArgumentParser
 
-from object_detection.utils import (ops as utils_ops,
-                                    label_map_util,
-                                    visualization_utils as vis_utils)
-from utils.Constants import (M_DEFAULT_MODEL,
-                             M_GRAPH,
-                             M_LABELS)
-from tensorflow_worker import Tensorflow
-from webhook import WebHook
+from TensorflowServer.object_detection.utils import (ops as utils_ops,
+                                                     label_map_util,
+                                                     visualization_utils as vis_utils)
+from TensorflowServer.utils.Constants import (M_DEFAULT_MODEL,
+                                              M_GRAPH,
+                                              M_LABELS)
+from TensorflowServer.tensorflow_worker import Tensorflow
+from TensorflowServer.webhook import WebHook
 
 __program_name__ = """TensorFlow Server client"""
 __program_executable__ = "TensorflowServer"
@@ -90,8 +90,8 @@ if __name__ == '__main__':
                                 "(omit '<', '>' characters):\n"
                                 "\"<model_name>_<extra_specs>_<release_date>\".\n"
                                 "You can find all the available models here: "
-                                "https://github.com/tensorflow_worker/models/blob/master/research/object_detection/g3doc/"
-                                "detection_model_zoo.md#coco-trained-models")
+                                "https://github.com/tensorflow_worker/models/blob/master/research/object_detection/"
+                                "g3doc/detection_model_zoo.md#coco-trained-models")
     args = arguments.parse_args()
     try:
         main(args)
