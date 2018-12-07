@@ -25,7 +25,6 @@ looks for objects contained at the image given"""
 
 def is_website_available(url: str) -> bool:
     from urllib.request import urlopen
-    print(url)
     return urlopen(url).getcode() == 200
 
 
@@ -36,7 +35,7 @@ def main(arg):
     custom_model = arg.custom
 
     # default_model = "ssd_mobilenet_v2_quantized_300x300_coco_2018_09_14"
-    download_base_url = "http://download.tensorflow_worker.org/models/object_detection/"
+    download_base_url = "http://download.tensorflow.org/models/object_detection/"
     download_extension = ".tar.gz"
 
     if use_mobilenet_v1 and use_mobilenet_v2 and use_faster_rcnn:
