@@ -1,6 +1,7 @@
 import os
 import six.moves.urllib as urllib
 import tarfile
+import traceback
 
 from argparse import ArgumentParser
 
@@ -97,3 +98,5 @@ if __name__ == '__main__':
         main(args)
     except Exception as e:
         print(e)
+        traceback.print_exc()
+        exit(-1)
