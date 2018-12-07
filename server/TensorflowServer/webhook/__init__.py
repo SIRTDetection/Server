@@ -24,14 +24,14 @@ class WebHook(object):
         self.__clients = {}
         self.__tokens = []
         if os.path.exists("clients"):
-            with open("clients") as clients:
+            with open("clients", "rb") as clients:
                 self.__clients = pickle.load(clients)
         if os.path.exists("tokens"):
-            with open("tokens") as tokens:
+            with open("tokens", "rb") as tokens:
                 self.__tokens = pickle.load(tokens)
         else:
             self.__tokens = genTokens()
-            with open("tokens") as tokens:
+            with open("tokens", "wb") as tokens:
                 pickle.dump(self.__tokens, tokens, pickle.HIGHEST_PROTOCOL)
         self.__tf = Tensorflow()
 
