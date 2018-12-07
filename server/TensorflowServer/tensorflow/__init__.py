@@ -71,8 +71,8 @@ class Tensorflow(object):
                             output_dict["detection_masks"] = output_dict["detection_masks"][0]
             return output_dict
 
-        def detect_objects(self, image_path: str) -> np.ndarray:
-            image = Image.open(image_path)
+        def detect_objects(self, image) -> np.ndarray:
+            # image = Image.open(image_path)
             numpy_image = self.load_image_into_numpy_array(image)
             numpy_image_expanded = np.expand_dims(numpy_image, axis=0)
             output = self._run_inference_on_single_image(numpy_image)

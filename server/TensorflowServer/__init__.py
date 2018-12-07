@@ -22,14 +22,16 @@ from .object_detection.utils import (ops as utils_ops,
 from .utils.Constants import (M_DEFAULT_MODEL,
                               M_GRAPH,
                               M_LABELS)
+from .tensorflow import Tensorflow
+from .webhook import WebHook
 
 __program_name__ = """TensorFlow Server client"""
 __program_executable__ = "TensorflowServer"
 __program_description__ = """The TensorFlow Server API listening to devices requests. By using object_detection API, 
 looks for objects contained at the image given"""
 
-if StrictVersion(tf.__version__) < StrictVersion('1.9.0'):
-    raise ImportError("At least, TensorFlow:1.9.0 is needed. Please, upgrade your installation")
+"""if StrictVersion(tf.__version__) < StrictVersion('1.9.0'):
+    raise ImportError("At least, TensorFlow:1.9.0 is needed. Please, upgrade your installation")"""
 
 
 def is_website_available(url: str) -> bool:
@@ -65,7 +67,7 @@ def main(arg):
         raise ConnectionError("The following URL: \"" + download_url + "\" is not valid!")
 
     path_to_frozen_graph = model_name + "/" + M_GRAPH
-    path_to_labels = os.path.join("data", M_LABELS)
+    # path_to_labels = os.path.join("data", M_LABELS)
 
     if not os.path.exists(path_to_frozen_graph):
         downloader = urllib.request.URLopener()
@@ -75,6 +77,9 @@ def main(arg):
             filename = os.path.basename(file.name)
             if M_GRAPH in filename:
                 tar_file.extract(file, os.getcwd())
+    Tensorflow(model=model_name)
+    webhook_runner = WebHook()
+    webhook_runner.start()
 
 
 if __name__ == '__main__':

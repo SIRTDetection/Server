@@ -3,6 +3,8 @@ import os
 from datetime import datetime
 from flask import Flask, request, jsonify, send_file
 
+from ..tensorflow import Tensorflow
+
 
 def genTokens() -> list:
     from binascii import hexlify
@@ -31,6 +33,7 @@ class WebHook(object):
             self.__tokens = genTokens()
             with open("tokens") as tokens:
                 pickle.dump(self.__tokens, tokens, pickle.HIGHEST_PROTOCOL)
+        self.__tf = Tensorflow()
 
     def start(self):
         self.app.run()
@@ -83,7 +86,7 @@ class WebHook(object):
         self.updateFiles()
         str_img = request.data
         image = Image.open(BytesIO(str_img))
-        image_with_boxes = None  # TODO - here TensorFlow is called and process the image
+        image_with_boxes = self.__tf.detect_objects(image)
         boxed_image = Image.fromarray(image_with_boxes, "RGB")
         image_io = BytesIO()
         boxed_image.save(image_io, "PNG", quality=100)
