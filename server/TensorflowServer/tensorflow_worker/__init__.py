@@ -61,14 +61,14 @@ class Tensorflow(object):
                                                                                               image.shape[1])
                         detection_masks_reframed = tf.cast(tf.greater(detection_masks_reframed, 0.5), tf.uint8)
                         tensor_dict["detection_masks"] = tf.expand_dims(detection_masks_reframed, 0)
-                        image_tensor = tf.get_default_graph().get_tensor_by_name("image_tensor:0")
-                        output_dict = sess.run(tensor_dict, feed_dict={image_tensor: np.expand_dims(image, 0)})
-                        output_dict["num_detections"] = int(output_dict["num_detections"][0])
-                        output_dict["detection_classes"] = output_dict["detection_classes"][0].astype(np.uint8)
-                        output_dict["detection_boxes"] = output_dict["detection_boxes"][0]
-                        output_dict["detection_scores"] = output_dict["detection_scores"][0]
-                        if "detection_masks" in output_dict:
-                            output_dict["detection_masks"] = output_dict["detection_masks"][0]
+                    image_tensor = tf.get_default_graph().get_tensor_by_name("image_tensor:0")
+                    output_dict = sess.run(tensor_dict, feed_dict={image_tensor: np.expand_dims(image, 0)})
+                    output_dict["num_detections"] = int(output_dict["num_detections"][0])
+                    output_dict["detection_classes"] = output_dict["detection_classes"][0].astype(np.uint8)
+                    output_dict["detection_boxes"] = output_dict["detection_boxes"][0]
+                    output_dict["detection_scores"] = output_dict["detection_scores"][0]
+                    if "detection_masks" in output_dict:
+                        output_dict["detection_masks"] = output_dict["detection_masks"][0]
             return output_dict
 
         def detect_objects(self, image) -> np.ndarray:
