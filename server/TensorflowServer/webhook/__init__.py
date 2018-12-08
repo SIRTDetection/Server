@@ -84,7 +84,12 @@ def _handleImages():
     global _clients
 
     token = request.args.get("token")
-    if token not in _tokens:
+    found = False
+    for current_token in _tokens:
+        if token in current_token:
+            found = True
+            break
+    if not found:
         return jsonify({"status": "unauthorized"}), 403
     else:
         uuid = ""
