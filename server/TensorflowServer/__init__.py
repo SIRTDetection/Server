@@ -68,7 +68,7 @@ def main(arg):
                 tar_file.extract(file, os.getcwd())
     Tensorflow(model=model_name)
     webhook_runner = WebHook()
-    webhook_runner.start()
+    webhook_runner.run()
 
 
 if __name__ == '__main__':
