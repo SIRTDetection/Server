@@ -209,6 +209,8 @@ class Worker(Tensorflow):
                                                 result_out["detection_scores"])
             return image_with_boxes
 
+    __instance = None
+
     def __new__(cls, *args, **kwargs):
         if not Worker.__instance:
             model = kwargs.get("model", W_DEFAULT_MODEL_URL)
