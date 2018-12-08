@@ -12,7 +12,7 @@ from TensorflowServer.utils.Constants import (M_DEFAULT_MODEL,
                                               M_GRAPH,
                                               M_LABELS)
 from TensorflowServer.tensorflow_worker import Tensorflow
-from TensorflowServer.webhook import WebHook
+from TensorflowServer.webhook import run
 
 __program_name__ = """TensorFlow Server client"""
 __program_executable__ = "TensorflowServer"
@@ -67,8 +67,9 @@ def main(arg):
             if M_GRAPH in filename:
                 tar_file.extract(file, os.getcwd())
     Tensorflow(model=model_name)
-    webhook_runner = WebHook()
-    webhook_runner.run()
+    # webhook_runner = WebHook()
+    # webhook_runner.run()
+    run()
 
 
 if __name__ == '__main__':
