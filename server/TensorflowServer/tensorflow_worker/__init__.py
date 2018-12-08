@@ -196,7 +196,7 @@ class Worker(Tensorflow):
                     np.copyto(image, np.array(image_pil))
             return image
 
-        def detectObjects(self, image):
+        def detect_objects(self, image):
             img_width, img_height = image.size
             if img_height > 1280:
                 image = self._resize_image(image, 720, 1280)
@@ -224,4 +224,4 @@ class Worker(Tensorflow):
         return setattr(self.__instance, key, value)
 
     def detect_objects(self, image) -> np.ndarray:
-        return self.__instance.detectObjects(image)
+        return self.__instance.detect_objects(image)
