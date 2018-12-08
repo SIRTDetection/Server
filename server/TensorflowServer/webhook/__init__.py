@@ -88,7 +88,7 @@ def _handleImages():
     found = False
     for current_token in _tokens:
         print(current_token)
-        if token in current_token:
+        if current_token["token"] == token:
             found = True
             break
     if not found:
