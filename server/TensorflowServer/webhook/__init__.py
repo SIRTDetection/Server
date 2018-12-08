@@ -96,8 +96,11 @@ def _handleImages():
     else:
         uuid = ""
         for key, value in _clients.items():
+            print((key, value))
+            print(value["token"])
             if value["token"] == token:
                 uuid = key
+        print(uuid)
     _clients[uuid]["latest_connection"] = datetime.now()
     _updateFiles()
     str_img = request.data
