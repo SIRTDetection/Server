@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from flask import Flask, request, jsonify, send_file
 
-from TensorflowServer.tensorflow_worker import Tensorflow
+from TensorflowServer.tensorflow_worker import Worker
 
 app = Flask(__name__)
 _clients = {}
@@ -37,7 +37,7 @@ def run():
         _tokens = genTokens()
         with open("tokens", "wb") as tokens:
             pickle.dump(_tokens, tokens, pickle.HIGHEST_PROTOCOL)
-    _tf = Tensorflow()
+    _tf = Worker()
     app.run()
 
 
