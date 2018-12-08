@@ -65,7 +65,7 @@ def _registerDeviceOrToken(uuid: str):
             token = ""
             for current_token in _tokens:
                 if not current_token["used"]:
-                    token = current_token
+                    token = current_token["token"]
                     current_token["used"] = True
                     break
             _clients[uuid] = {"token": token,
@@ -84,8 +84,10 @@ def _handleImages():
     global _clients
 
     token = request.args.get("token")
+    print(token)
     found = False
     for current_token in _tokens:
+        print(current_token)
         if token in current_token:
             found = True
             break
