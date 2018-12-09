@@ -4,14 +4,10 @@ import logging
 from argparse import ArgumentParser
 from flask.logging import wsgi_errors_stream
 
-from TensorflowServer.object_detection.utils import (ops as utils_ops,
-                                                     label_map_util,
-                                                     visualization_utils as vis_utils)
 from TensorflowServer.utils.Constants import (W_DEFAULT_MODEL_URL,
                                               L_CONSOLE,
-                                              L_FILE)
-from TensorflowServer.tensorflow_worker import Worker
-from TensorflowServer.webhook import run
+                                              L_FILE,
+                                              L_FILENAME)
 from TensorflowServer.utils import (setup_logging,
                                     setup_console_logging,
                                     LoggingHandler)
@@ -28,16 +24,16 @@ def is_website_available(url: str) -> bool:
 
 
 def main(arg):
+    from TensorflowServer.object_detection.utils import (ops as utils_ops,
+                                                         label_map_util,
+                                                         visualization_utils as vis_utils)
+    from TensorflowServer.tensorflow_worker import Worker
+    from TensorflowServer.webhook import run
+
     # use_mobilenet_v1 = arg.mobilenet_v1
     use_mobilenet_v2 = arg.mobilenet_v2
     use_faster_rcnn = arg.faster_rcnn
     custom_model = arg.custom
-    log_to_console = arg.no_console
-    setup_logging(L_FILE, "TensorflowServer.log")
-    if log_to_console:
-        setup_console_logging(L_CONSOLE, wsgi_errors_stream)
-    else:
-        setup_console_logging(L_CONSOLE, None)
 
     log = LoggingHandler(logs=[logging.getLogger(L_CONSOLE), logging.getLogger(L_FILE)])
     log.info("Running TensorflowServer - initializing Tensorflow, models and more...")
@@ -86,6 +82,11 @@ if __name__ == '__main__':
                            action="store_true",
                            help="The server application does not log to console")
     args = arguments.parse_args()
+    setup_logging(L_FILE, L_FILENAME)
+    if args.no_console:
+        setup_console_logging(L_CONSOLE, None)
+    else:
+        setup_console_logging(L_CONSOLE, wsgi_errors_stream)
     try:
         main(args)
     except KeyboardInterrupt:

@@ -12,3 +12,4 @@ W_MODELS = {
 
 L_CONSOLE = "console_logger"
 L_FILE = "file_logger"
+L_FILENAME = "TensorflowServer.log"
