@@ -1,13 +1,16 @@
 import traceback
+import logging
 
 from argparse import ArgumentParser
+from flask.logging import wsgi_errors_stream
 
 from TensorflowServer.object_detection.utils import (ops as utils_ops,
                                                      label_map_util,
                                                      visualization_utils as vis_utils)
-from TensorflowServer.utils.Constants import W_DEFAULT_MODEL_URL
+from TensorflowServer.utils.Constants import W_DEFAULT_MODEL_URL, L_CONSOLE, L_FILE
 from TensorflowServer.tensorflow_worker import Worker
 from TensorflowServer.webhook import run
+from TensorflowServer.utils import setup_logging, setup_console_logging
 
 __program_name__ = """TensorFlow Server client"""
 __program_executable__ = "TensorflowServer"
@@ -28,6 +31,12 @@ def main(arg):
     use_mobilenet_v2 = arg.mobilenet_v2
     use_faster_rcnn = arg.faster_rcnn
     custom_model = arg.custom
+    log_to_console = arg.no_console
+    setup_logging(L_FILE, "TensorflowServer.log")
+    if log_to_console:
+        setup_console_logging(L_CONSOLE, wsgi_errors_stream)
+    else:
+        setup_console_logging(L_CONSOLE, None)
 
     # default_model = "ssd_mobilenet_v2_quantized_300x300_coco_2018_09_14"
     # download_base_url = "http://download.tensorflow.org/models/object_detection/"
@@ -85,6 +94,9 @@ if __name__ == '__main__':
                            help="Uses a custom model available at: \"https://tfhub.dev/\" - you must include the full "
                                 "model URL. For example, for \"Mobilenet V2\": "
                                 "https://tfhub.dev/google/openimages_v4/ssd/mobilenet_v2/1")
+    arguments.add_argument("--no_console",
+                           action="store_true",
+                           help="The server application does not log to console")
     args = arguments.parse_args()
     try:
         main(args)

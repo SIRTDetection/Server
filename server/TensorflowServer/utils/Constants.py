@@ -9,3 +9,6 @@ W_MODELS = {
     "MobilenetV2": "https://tfhub.dev/google/openimages_v4/ssd/mobilenet_v2/1",
     "Faster RCNN": "https://tfhub.dev/google/faster_rcnn/openimages_v4/inception_resnet_v2/1"
 }
+
+L_CONSOLE = "console_logger"
+L_FILE = "file_logger"

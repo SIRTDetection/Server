@@ -1,7 +1,8 @@
 import os
+import logging as log
 
 from datetime import datetime
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, logging
 
 from TensorflowServer.tensorflow_worker import Worker
 
@@ -9,6 +10,7 @@ app = Flask(__name__)
 _clients = {}
 _tokens = []
 _tf = None
+_console = log.getLogger("")
 
 
 def genTokens() -> list:
@@ -38,6 +40,7 @@ def run():
         with open("tokens", "wb") as tokens:
             pickle.dump(_tokens, tokens, pickle.HIGHEST_PROTOCOL)
     _tf = Worker()
+    app.logger.removeHandler(logging.default_handler)
     app.run()
 
 

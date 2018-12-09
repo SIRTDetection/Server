@@ -128,7 +128,7 @@ class Worker(Tensorflow):
                 self.__result = detector(module_input, as_dict=True)
                 init_ops = [tf.global_variables_initializer(), tf.tables_initializer()]
 
-                self.__session = tf.Session()
+                self.__session = tf.Session(config=tf.ConfigProto(device_count={"GPU": 0}))
                 self.__session.run(init_ops)
 
         @staticmethod
