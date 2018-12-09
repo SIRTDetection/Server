@@ -52,25 +52,25 @@ class LoggingHandler(object):
         def __init__(self, logs: list):
             self.__logs = logs
 
-        def debug(self, msg, *args, **kwargs):
+        def debug(self, msg):
             for log in self.__logs:
-                log.debug(msg, args, kwargs)
+                log.debug(msg)
 
-        def info(self, msg, *args, **kwargs):
+        def info(self, msg):
             for log in self.__logs:
-                log.info(msg, args, kwargs)
+                log.info(msg)
 
-        def error(self, msg, *args, **kwargs):
+        def error(self, msg):
             for log in self.__logs:
-                log.error(msg, args, kwargs)
+                log.error(msg)
 
-        def warning(self, msg, *args, **kwargs):
+        def warning(self, msg):
             for log in self.__logs:
-                log.warning(msg, args, kwargs)
+                log.warning(msg)
 
-        def critical(self, msg, *args, **kwargs):
+        def critical(self, msg):
             for log in self.__logs:
-                log.critical(msg, args, kwargs)
+                log.critical(msg)
 
         def exception(self, msg, *args, exc_info: bool = True, **kwargs):
             for log in self.__logs:
@@ -95,20 +95,20 @@ class LoggingHandler(object):
     def __setattr__(self, key, value):
         return setattr(self.__instance, key, value)
 
-    def debug(self, msg, *args, **kwargs):
-        self.__instance.debug(msg, args, kwargs)
+    def debug(self, msg):
+        self.__instance.debug(msg)
 
-    def info(self, msg, *args, **kwargs):
-        self.__instance.info(msg, args, kwargs)
+    def info(self, msg):
+        self.__instance.info(msg)
 
-    def error(self, msg, *args, **kwargs):
-        self.__instance.error(msg, args, kwargs)
+    def error(self, msg):
+        self.__instance.error(msg)
 
-    def warning(self, msg, *args, **kwargs):
-        self.__instance.warning(msg, args, kwargs)
+    def warning(self, msg):
+        self.__instance.warning(msg)
 
-    def critical(self, msg, *args, **kwargs):
-        self.__instance.critical(msg, args, kwargs)
+    def critical(self, msg):
+        self.__instance.critical(msg)
 
     def exception(self, msg, *args, exc_info: bool = True, **kwargs):
         self.__instance.exception(msg, args, exc_info, kwargs)
