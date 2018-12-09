@@ -104,8 +104,8 @@ def _handleImages():
     _clients[uuid]["latest_connection"] = datetime.now()
     _updateFiles()
     str_img = request.data
-    image = Image.open(BytesIO(str_img))
-    image_with_boxes = _tf.detect_objects(image)
+    # image = Image.open(BytesIO(str_img))
+    image_with_boxes = _tf.detect_objects(str_img)
     boxed_image = Image.fromarray(image_with_boxes, "RGB")
     image_io = BytesIO()
     boxed_image.save(image_io, "PNG", quality=100)
