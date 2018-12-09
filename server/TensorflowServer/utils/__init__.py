@@ -79,8 +79,8 @@ class LoggingHandler(object):
     def __new__(cls, *args, **kwargs):
         if not LoggingHandler.__instance:
             logs = kwargs.get("logs")
-            if not logs or len(logs) == 0:
-                raise AttributeError("At least kwarg \"log\" (a list of the loggers) must be provided")
+            # if not logs or len(logs) == 0:
+            #     raise AttributeError("At least kwarg \"log\" (a list of the loggers) must be provided")
             LoggingHandler.__instance = LoggingHandler.__LoggingHandler(logs)
         return LoggingHandler.__instance
 
