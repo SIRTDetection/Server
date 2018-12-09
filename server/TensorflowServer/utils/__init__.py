@@ -71,6 +71,9 @@ class LoggingHandler(object):
             for log in self.__logs:
                 log.exception(msg, args, exc_info, kwargs)
 
+        def getLoggers(self) -> list:
+            return self.__logs
+
     __instance = None
 
     def __new__(cls, *args, **kwargs):
@@ -104,3 +107,6 @@ class LoggingHandler(object):
 
     def exception(self, msg, *args, exc_info: bool = True, **kwargs):
         self.__instance.exception(msg, args, exc_info, kwargs)
+
+    def getLoggers(self) -> list:
+        return self.__instance.getLoggers()

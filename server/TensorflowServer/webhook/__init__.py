@@ -1,16 +1,16 @@
 import os
-import logging as log
 
 from datetime import datetime
 from flask import Flask, request, jsonify, send_file, logging
 
 from TensorflowServer.tensorflow_worker import Worker
+from TensorflowServer.utils import LoggingHandler
 
 app = Flask(__name__)
 _clients = {}
 _tokens = []
 _tf = None
-_console = log.getLogger("")
+_log = LoggingHandler()
 
 
 def genTokens() -> list:
@@ -40,7 +40,12 @@ def run():
         with open("tokens", "wb") as tokens:
             pickle.dump(_tokens, tokens, pickle.HIGHEST_PROTOCOL)
     _tf = Worker()
+    custom_logs = LoggingHandler().getLoggers()
     app.logger.removeHandler(logging.default_handler)
+    for custom_log in custom_logs:
+        handlers = custom_log.handlers
+        for handler in handlers:
+            app.logger.addHandler(handler)
     app.run()
 
 
@@ -55,16 +60,21 @@ def _updateFiles():
 def _registerDeviceOrToken(uuid: str):
     global _clients
 
+    _log.info("New device petition received")
     if uuid in _clients:
+        _log.debug("Device is already registered\nUUID: {}".format(uuid))
         _clients[uuid]["latest_connection"] = datetime.now()
         _updateFiles()
         return jsonify({"token": _clients[uuid]["token"],
                         "status": 200}), 200
     else:
+        _log.debug("New device UUID: {}".format(uuid))
         if len(_clients.keys()) >= 10:
+            _log.warning("Maximum clients reached (10)")
             return jsonify({"token": None,
                             "status": 403}), 403
         else:
+            _log.debug("Registering a new client. Client number #{}".format(len(_clients.keys())))
             token = ""
             for current_token in _tokens:
                 if not current_token["used"]:
@@ -74,6 +84,12 @@ def _registerDeviceOrToken(uuid: str):
             _clients[uuid] = {"token": token,
                               "first_connection": datetime.now(),
                               "latest_connection": datetime.now()}
+            _log.debug("Client UUID: {}".format(uuid))
+            _log.debug("Client token: {}".format(token))
+            _log.debug("First connection: {}".format(_clients[uuid]["first_connection"]
+                                                     .strftime("%H:%M:%S %Z @ %Y/%m/%d")))
+            _log.debug("Latest connection: {}".format(_clients[uuid]["latest_connection"]
+                                                      .strftime("%H:%M:%S %Z @ %Y/%m/%d")))
             _updateFiles()
             return jsonify({"token": _clients[uuid]["token"],
                             "status": 200}), 200
@@ -81,136 +97,43 @@ def _registerDeviceOrToken(uuid: str):
 
 @app.route("/sirt", methods=["POST"])
 def _handleImages():
+    from time import clock
     from io import BytesIO
     from PIL import Image
 
     global _clients
 
     token = request.args.get("token")
-    print(token)
     found = False
+    _log.info("New petition received!")
+    _log.debug("User token: {}".format(token))
     for current_token in _tokens:
-        print(current_token)
         if current_token["token"] == token:
             found = True
             break
     if not found:
+        _log.warning("Unauthorized user - token not found in tokens")
         return jsonify({"status": "unauthorized"}), 403
     else:
         uuid = ""
         for key, value in _clients.items():
-            print((key, value))
-            print(value["token"])
             if value["token"] == token:
                 uuid = key
-        print(uuid)
+    _log.debug("User UUID: {}".format(uuid))
     _clients[uuid]["latest_connection"] = datetime.now()
+    _log.debug("First connection: {}".format(_clients[uuid]["first_connection"]
+                                             .strftime("%H:%M:%S %Z @ %Y/%m/%d")))
+    _log.debug("Latest connection: {}".format(_clients[uuid]["latest_connection"]
+                                              .strftime("%H:%M:%S %Z @ %Y/%m/%d")))
     _updateFiles()
     str_img = request.data
-    # image = Image.open(BytesIO(str_img))
+    _log.debug("Starting object inference...")
+    start_time = clock()
     image_with_boxes = _tf.detect_objects(str_img)
+    _log.debug("Inference took %.2f seconds" % (clock() - start_time))
     boxed_image = Image.fromarray(image_with_boxes, "RGB")
     image_io = BytesIO()
     boxed_image.save(image_io, "PNG", quality=100)
     image_io.seek(0)
+    _log.debug("Sending file...")
     return send_file(image_io, mimetype="image/png")
-
-# class WebHook(object):
-#     def __init__(self):
-#         import pickle
-#
-#         self.__clients = {}
-#         self.__tokens = []
-#         if os.path.exists("clients"):
-#             with open("clients", "rb") as clients:
-#                 self.__clients = pickle.load(clients)
-#         if os.path.exists("tokens"):
-#             with open("tokens", "rb") as tokens:
-#                 self.__tokens = pickle.load(tokens)
-#         else:
-#             self.__tokens = genTokens()
-#             with open("tokens", "wb") as tokens:
-#                 pickle.dump(self.__tokens, tokens, pickle.HIGHEST_PROTOCOL)
-#         self.__tf = Tensorflow()
-#         self.__app = Flask(__name__)
-#
-#     def run(self):
-#         self.__app.run()
-#
-#     def updateFiles(self):
-#         import pickle
-#
-#         with open("clients") as clients:
-#             pickle.dump(self.__clients, clients, pickle.HIGHEST_PROTOCOL)
-#
-#     # @app.route("/device/<uuid>", methods=["GET"])
-#     def _registerDeviceOrGetToken(self):
-#
-#         @self.__app.route("/device/<uuid>", methods=["GET"])
-#         def registerDeviceOrGetToken(uuid: str):
-#             if uuid in self.__clients:
-#                 self.__clients[uuid]["latest_connection"] = datetime.now()
-#                 self.updateFiles()
-#                 return jsonify({"token": self.__clients[uuid]["token"],
-#                                 "status": 200}), 200
-#             else:
-#                 if len(self.__clients.keys()) >= 10:
-#                     return jsonify({"token": None,
-#                                     "status": 403}), 403
-#                 else:
-#                     token = ""
-#                     for current_token in self.__tokens:
-#                         if not current_token["used"]:
-#                             token = current_token
-#                             current_token["used"] = True
-#                             break
-#                     self.__clients[uuid] = {"token": token,
-#                                             "first_connection": datetime.now(),
-#                                             "latest_connection": datetime.now()}
-#                     self.updateFiles()
-#                     return jsonify({"token": self.__clients[uuid]["token"],
-#                                     "status": 200}), 200
-#
-#     # @app.route("/sirt", methods=["POST"])
-#     def _handler(self):
-#
-#         @self.__app.route("/sirt", methods=["POST"])
-#         def handler():
-#             from io import BytesIO
-#             from PIL import Image
-#
-#             token = request.args.get("token")
-#             if token not in self.__tokens:
-#                 return jsonify({"status": "unauthorized"}), 403
-#             else:
-#                 uuid = ""
-#                 for key, value in self.__clients.items():
-#                     if value["token"] == token:
-#                         uuid = key
-#             self.__clients[uuid]["latest_connection"] = datetime.now()
-#             self.updateFiles()
-#             str_img = request.data
-#             image = Image.open(BytesIO(str_img))
-#             image_with_boxes = self.__tf.detect_objects(image)
-#             boxed_image = Image.fromarray(image_with_boxes, "RGB")
-#             image_io = BytesIO()
-#             boxed_image.save(image_io, "PNG", quality=100)
-#             image_io.seek(0)
-#             return send_file(image_io, mimetype="image/png")
-
-    # @app.route("/sirt/training", methods=["POST"])
-    # def train(self):
-    #     from io import BytesIO
-    #     from PIL import Image
-    #
-    #     token = request.args.get("token")
-    #     if token not in self.__tokens:
-    #         return jsonify({"status": "unauthorized"}), 403
-    #     else:
-    #         uuid = ""
-    #         for key, value in self.__clients.items():
-    #             if value["token"] == token
-    #                 uuid = key
-    #     self.__clients[uuid]["latest_connection"] = datetime.now()
-    #     self.updateFiles()
-    #     str_img = request.data

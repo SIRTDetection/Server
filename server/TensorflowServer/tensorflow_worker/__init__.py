@@ -9,8 +9,7 @@ from distutils.version import StrictVersion
 from PIL import (Image,
                  ImageColor,
                  ImageDraw,
-                 ImageFont,
-                 ImageOps)
+                 ImageFont, )
 
 from TensorflowServer.object_detection.utils import (ops as utils_ops,
                                                      label_map_util,
@@ -20,6 +19,9 @@ from TensorflowServer.utils.Constants import (M_DEFAULT_MODEL,
                                               M_LABELS,
                                               T_KEYS,
                                               W_DEFAULT_MODEL_URL)
+from TensorflowServer.utils import LoggingHandler
+
+_log = LoggingHandler()
 
 if StrictVersion(tf.__version__) < StrictVersion('1.9.0'):
     raise ImportError('Please upgrade your TensorFlow installation to v1.9.* or later!')
@@ -93,7 +95,6 @@ class Tensorflow(object):
                 line_thickness=8
             )
             return numpy_image
-            # plt.figure(figsize=self.__image_size)
 
     __instance = None
 
@@ -225,8 +226,11 @@ class Worker(Tensorflow):
 
     def __new__(cls, *args, **kwargs):
         if not Worker.__instance:
+            _log.debug("Generating a new instance")
             model = kwargs.get("model", W_DEFAULT_MODEL_URL)
             Worker.__instance = Worker.__Worker(model)
+        else:
+            _log.debug("Returning a created instance")
         return Worker.__instance
 
     def __getattr__(self, item):
@@ -236,4 +240,5 @@ class Worker(Tensorflow):
         return setattr(self.__instance, key, value)
 
     def detect_objects(self, image) -> np.ndarray:
+        _log.debug("Detecting objects for image...")
         return self.__instance.detect_objects(image)
