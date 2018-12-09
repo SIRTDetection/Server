@@ -141,9 +141,9 @@ class Worker(Tensorflow):
             if img_height > 1280:
                 pil_image = ImageOps.fit(pil_image, (new_width, new_height), Image.ANTIALIAS)
                 image_rgb = pil_image.convert("RGB")
-                with BytesIO as output_io:
-                    image_rgb.save(output_io, format="PNG")
-                return output_io.getvalue()
+                img_io = BytesIO()
+                image_rgb.save(img_io, format="PNG")
+                return img_io.getvalue()
             else:
                 return image
             # return image_rgb
