@@ -10,17 +10,13 @@ from TensorflowServer.utils.Constants import (W_DEFAULT_MODEL_URL,
                                               L_FILENAME)
 from TensorflowServer.utils import (setup_logging,
                                     setup_console_logging,
+                                    is_website_available,
                                     LoggingHandler)
 
 __program_name__ = """TensorFlow Server client"""
 __program_executable__ = "TensorflowServer"
 __program_description__ = """The TensorFlow Server API listening to devices requests. By using object_detection API, 
 looks for objects contained at the image given"""
-
-
-def is_website_available(url: str) -> bool:
-    from urllib.request import urlopen
-    return urlopen(url).getcode() == 200
 
 
 def main(arg):
@@ -35,7 +31,7 @@ def main(arg):
     use_faster_rcnn = arg.faster_rcnn
     custom_model = arg.custom
 
-    log = LoggingHandler(logs=[logging.getLogger(L_CONSOLE), logging.getLogger(L_FILE)])
+    log = LoggingHandler()
     log.info("Running TensorflowServer - initializing Tensorflow, models and more...")
 
     if use_mobilenet_v2 and use_faster_rcnn:
@@ -87,6 +83,7 @@ if __name__ == '__main__':
         setup_console_logging(L_CONSOLE, None)
     else:
         setup_console_logging(L_CONSOLE, wsgi_errors_stream)
+    LoggingHandler(logs=[logging.getLogger(L_CONSOLE), logging.getLogger(L_FILE)])
     try:
         main(args)
     except KeyboardInterrupt:

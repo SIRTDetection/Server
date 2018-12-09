@@ -42,6 +42,11 @@ def cleanupOldLogs(log_file: str):
             os.remove(log_file)
 
 
+def is_website_available(url: str) -> bool:
+    from urllib.request import urlopen
+    return urlopen(url).getcode() == 200
+
+
 class LoggingHandler(object):
     class __LoggingHandler(object):
         def __init__(self, logs: list):
@@ -79,8 +84,8 @@ class LoggingHandler(object):
     def __new__(cls, *args, **kwargs):
         if not LoggingHandler.__instance:
             logs = kwargs.get("logs")
-            # if not logs or len(logs) == 0:
-            #     raise AttributeError("At least kwarg \"log\" (a list of the loggers) must be provided")
+            if not logs or len(logs) == 0:
+                raise AttributeError("At least kwarg \"log\" (a list of the loggers) must be provided")
             LoggingHandler.__instance = LoggingHandler.__LoggingHandler(logs)
         return LoggingHandler.__instance
 
