@@ -132,15 +132,19 @@ class Worker(Tensorflow):
                 self.__session.run(init_ops)
 
         @staticmethod
-        def _resize_image(image, new_width: int = 256, new_height: int = 256) -> Image:
+        def _resize_image(image, new_width: int = 1280) -> Image:
             from io import BytesIO
 
             image_data = BytesIO(image)
             pil_image = Image.open(image_data)
             img_width, img_height = pil_image.size
             if img_width > 1280:
-                pil_image = ImageOps.fit(pil_image, (new_width, new_height), Image.ANTIALIAS)
-                image_rgb = pil_image.convert("RGB")
+                wp_percent = float(new_width / float(img_width))
+                h_size = int(float(img_height) * wp_percent)
+                resized_img = pil_image.resize((new_width, h_size), Image.ANTIALIAS)
+                image_rgb = resized_img.convert("RGB")
+                # pil_image = ImageOps.fit(pil_image, (new_width, new_height), Image.ANTIALIAS)
+                # image_rgb = pil_image.convert("RGB")
                 img_io = BytesIO()
                 image_rgb.save(img_io, format="PNG")
                 return img_io.getvalue()
@@ -208,7 +212,7 @@ class Worker(Tensorflow):
             return image
 
         def detect_objects(self, image):
-            image = self._resize_image(image, 1280, 720)
+            image = self._resize_image(image)
             result_out, image_out = self.__session.run([self.__result, self.__decoded_image],
                                                        feed_dict={self.__image_string_placeholder: image})
             image_with_boxes = self._draw_boxes(np.array(image_out),
