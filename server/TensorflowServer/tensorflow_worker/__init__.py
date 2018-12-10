@@ -9,7 +9,7 @@ from distutils.version import StrictVersion
 from PIL import (Image,
                  ImageColor,
                  ImageDraw,
-                 ImageFont, )
+                 ImageFont)
 
 from TensorflowServer.object_detection.utils import (ops as utils_ops,
                                                      label_map_util,
@@ -80,7 +80,6 @@ class Tensorflow(object):
             return output_dict
 
         def detect_objects(self, image) -> np.ndarray:
-            # image = Image.open(image_path)
             numpy_image = self.load_image_into_numpy_array(image)
             numpy_image_expanded = np.expand_dims(numpy_image, axis=0)
             output = self._run_inference_on_single_image(numpy_image)
@@ -144,14 +143,11 @@ class Worker(Tensorflow):
                 h_size = int(float(img_height) * wp_percent)
                 resized_img = pil_image.resize((new_width, h_size), Image.ANTIALIAS)
                 image_rgb = resized_img.convert("RGB")
-                # pil_image = ImageOps.fit(pil_image, (new_width, new_height), Image.ANTIALIAS)
-                # image_rgb = pil_image.convert("RGB")
                 img_io = BytesIO()
                 image_rgb.save(img_io, format="PNG")
                 return img_io.getvalue()
             else:
                 return image
-            # return image_rgb
 
         @staticmethod
         def _draw_bounding_box_on_image(image: Image.Image,

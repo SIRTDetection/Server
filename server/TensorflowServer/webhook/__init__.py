@@ -46,7 +46,7 @@ def run():
         handlers = custom_log.handlers
         for handler in handlers:
             app.logger.addHandler(handler)
-    app.run()
+    app.run(threaded=True, processes=4)
 
 
 def _updateFiles():
