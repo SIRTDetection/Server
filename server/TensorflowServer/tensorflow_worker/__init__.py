@@ -211,7 +211,7 @@ class Worker(Tensorflow):
 
         def detect_objects(self, image):
             image = self._resize_image(image)
-            with tf.Session(config=tf.ConfigProto(device_count={"GPU": 0})) as session:
+            with tf.Session(config=tf.ConfigProto(device_count={"GPU": 0}), graph=self.__detection_graph) as session:
                 result_out, image_out = session.run([self.__result, self.__decoded_image],
                                                     feed_dict={self.__image_string_placeholder: image})
                 image_with_boxes = self._draw_boxes(np.array(image_out),
