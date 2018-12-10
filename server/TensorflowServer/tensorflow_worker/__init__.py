@@ -128,9 +128,8 @@ class Worker(Tensorflow):
                 self.__result = detector(module_input, as_dict=True)
                 init_ops = [tf.global_variables_initializer(), tf.tables_initializer()]
 
-                session = tf.Session(config=tf.ConfigProto(device_count={"GPU": 0}))
-                session.run(init_ops)
-                session.close()
+                self.__session = tf.Session(config=tf.ConfigProto(device_count={"GPU": 0}))
+                self.__session.run(init_ops)
 
         @staticmethod
         def _resize_image(image, new_width: int = 1280) -> Image:
@@ -211,13 +210,12 @@ class Worker(Tensorflow):
 
         def detect_objects(self, image):
             image = self._resize_image(image)
-            with tf.Session(config=tf.ConfigProto(device_count={"GPU": 0}), graph=self.__detection_graph) as session:
-                result_out, image_out = session.run([self.__result, self.__decoded_image],
-                                                    feed_dict={self.__image_string_placeholder: image})
-                image_with_boxes = self._draw_boxes(np.array(image_out),
-                                                    result_out["detection_boxes"],
-                                                    result_out["detection_class_entities"],
-                                                    result_out["detection_scores"])
+            result_out, image_out = self.__session.run([self.__result, self.__decoded_image],
+                                                       feed_dict={self.__image_string_placeholder: image})
+            image_with_boxes = self._draw_boxes(np.array(image_out),
+                                                result_out["detection_boxes"],
+                                                result_out["detection_class_entities"],
+                                                result_out["detection_scores"])
             return image_with_boxes
 
     __instance = None
