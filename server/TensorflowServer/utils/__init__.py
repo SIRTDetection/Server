@@ -31,7 +31,7 @@ def cleanupOldLogs(log_file: str):
     import tarfile
     import os
 
-    tar_log_filename = log_file + "tar.gz"
+    tar_log_filename = log_file + ".tar.gz"
 
     if os.path.exists(log_file):
         if os.path.exists(tar_log_filename):
