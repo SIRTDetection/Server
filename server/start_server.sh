@@ -135,7 +135,8 @@ function run {
             echo "Obtained the latest updates"
         else
             echo "Downloading the server..."
-            git clone https://github.com/SIRTDetection/Server.git ../Server
+            git clone --recurse-submodules https://github.com/SIRTDetection/Server.git ../Server
+            git config submodule.recurse true
             echo "Downloaded the server"
             cd $(dirname $(readlink -f ../Server/server || realpath ../Server/server))
         fi
