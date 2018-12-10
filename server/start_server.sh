@@ -14,6 +14,7 @@ function usage {
     echo "  --no_pip              : does not attempt to update the PIP packages during the startup"
     echo "  --no_protoc           : does not attempt to compile the protoc sources"
     echo "  --no_pypath           : does not attempt to add the \"slim\" folder to the PYTHONPATH"
+    echo "  --nice [VALUE]        : defines the nice value that will be used - by default: 10"
     echo "  --help                : shows the TensorflowServer help and settings"
 }
 
@@ -24,11 +25,12 @@ function parseArgs {
     # named arguments
     while [[ "$1" != "" ]]; do
         case "$1" in
-        --bhelp)                usage;              exit;;
-        --no_update)            no_update=true;;
-        --no_pip)               no_pip=true;;
-        --no_protoc)            no_protoc=true;;
-        --no_pypath)            no_pypath=true;;
+        --bhelp )               usage;              exit;;
+        --no_update )           no_update=true;;
+        --no_pip )              no_pip=true;;
+        --no_protoc )           no_protoc=true;;
+        --no_pypath )           no_pypath=true;;
+        --nice )                nice_value="$2";    shift;;
         * )                     args+=("$1")
         esac
         shift
@@ -49,6 +51,9 @@ function parseArgs {
     fi
     if [[ -z "$no_pypath" ]]; then
         no_pypath=false
+    fi
+    if [[ -z "$nice_value" ]]; then
+        nice_value=10
     fi
 }
 
@@ -146,6 +151,14 @@ function run {
 
     if [[ "$no_pypath" == false ]]; then
         echo "Exporting PYTHONPATH"
-        export PYTHONPATH=${PYTHONPATH}:`pwd`/TensorflowServer:`pwd`/TensorflowServer/
+        RESEARCH=dirname $(readlink -f ../models/research || realpath ../models/research)
+        export PYTHONPATH=${PYTHONPATH}:${RESEARCH}:${RESEARCH}/slim
+        echo "Exported PYTHONPATH"
+    else
+        echo "Aborting PYTHONPATH definition"
     fi
+
+    nice -n${nice_value} python3 TensorflowServer/__init__.py "$@"
 }
+
+run "$@";
