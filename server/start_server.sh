@@ -60,65 +60,58 @@ function parseArgs {
 function checkNecessaryPackages {
     echo "Checking for necessary packages to be installed..."
     PROTOBUF_OK=$(dpkg-query -W --showformat='${Status}\n' protobuf-compiler|grep "install ok installed")
-#    dpkg -s protobuf-compiler & > /dev/null 2>&1
 
     if [[ "" == "$PROTOBUF_OK" ]]; then
         echo "Protoc is not installed - installing..."
-        sudo apt install protobuf-compiler -y
+        apt install protobuf-compiler -y
         echo "Protoc installed!"
     fi
 
     PYTHON3_OK=$(dpkg-query -W --showformat='${Status}\n' python3|grep "install ok installed")
-#    dpkg -s python3 & > /dev/null 2>&1
 
     if [[ "" == "$PYTHON3_OK" ]]; then
         echo "Python3 is not installed - installing..."
-        sudo apt install --install-suggests python3 -y
+        apt install --install-suggests python3 -y
         echo "Python3 installed!"
     fi
 
     PYTHON3_PIP_OK=$(dpkg-query -W --showformat='${Status}\n' python3-pip|grep "install ok installed")
-#    dpkg -s python3-pip & > /dev/null 2>&1
 
     if [[ "" == "$PYTHON3_PIP_OK" ]]; then
         echo "PIP3 is not installed - installing..."
-        sudo apt install --install-suggests python3-pip -y
+        apt install --install-suggests python3-pip -y
         echo "PIP3 installed!"
     fi
 
     PYTHON3_PIL_OK=$(dpkg-query -W --showformat='${Status}\n' python3-pil|grep "install ok installed")
-#    dpkg -s python3-pil & > /dev/null 2>&1
 
     if [[ "" == "$PYTHON3_PIL_OK" ]]; then
         echo "Python 3 PIL is not installed - installing..."
-        sudo apt install python3-pil -y
+        apt install python3-pil -y
         echo "Python3 PIL installed!"
     fi
 
     PYTHON3_LXML_OK=$(dpkg-query -W --showformat='${Status}\n' python3-lxml|grep "install ok installed")
-#    dpkg -s python3-lxml & > /dev/null 2>&1
 
     if [[ "" == "$PYTHON3_LXML_OK" ]]; then
         echo "Python 3 LXML is not installed - installing..."
-        sudo apt install python3-lxml -y
+        apt install python3-lxml -y
         echo "Python 3 LXML installed!"
     fi
 
     PYTHON3_TK_OK=$(dpkg-query -W --showformat='${Status}\n' python3-tk|grep "install ok installed")
-#    dpkg -s python3-tk & > /dev/null 2>&1
 
     if [[ "" == "$PYTHON3_TK_OK" ]]; then
         echo "Python 3 TK is not installed - installing..."
-        sudo apt install python3-tk -y
+        apt install python3-tk -y
         echo "Python 3 TK installed!"
     fi
 
     GIT_OK=$(dpkg-query -W --showformat='${Status}\n' git|grep "install ok installed")
-#    dpkg -s git & > /dev/null 2>&1
 
     if [[ "" == "$PYTHON3_TK_OK" ]]; then
         echo "Git is not installed - installing..."
-        sudo apt install git -y
+        apt install git -y
         echo "Git installed!"
     fi
 
@@ -127,6 +120,17 @@ function checkNecessaryPackages {
 
 function run {
     parseArgs "$@"
+    if ! [[ $(id -u) = 0 ]]; then
+        echo "The script needs to be executed as root - this will only affect packages installation.
+        The other scripts will be executed as regular user">&2
+        exit 1
+    fi
+
+    if [[ $SUDO_USER ]]; then
+        real_user=$SUDO_USER;
+    else
+        real_user=$(whoami);
+    fi
     checkNecessaryPackages
 
     echo "Packages checked!"
@@ -137,9 +141,9 @@ function run {
         if [[ $EUID -ne 0 ]]; then
             echo "Running as root - installing PIP packages globally"
             pip3 install -r requirements.txt --upgrade --quiet
-        else
-            echo "Running in user-mode - installing PIP packages locally"
-            pip3 install -r requirements.txt --upgrade --user --quiet
+#        else
+#            echo "Running in user-mode - installing PIP packages locally"
+#            pip3 install -r requirements.txt --upgrade --user --quiet
         fi
     else
         echo "Aborting PIP packages installation"
@@ -149,12 +153,12 @@ function run {
     if [[ "$no_update" == false ]]; then
         if [[ -d "../.git" ]]; then
             echo "Looking for new server updates..."
-            git pull --quiet
+            sudo -u ${real_user} git pull --quiet
             echo "Obtained the latest updates"
         else
             echo "Downloading the server..."
-            git clone --recurse-submodules https://github.com/SIRTDetection/Server.git ../Server
-            git config submodule.recurse true
+            sudo -u ${real_user} git clone --recurse-submodules https://github.com/SIRTDetection/Server.git ../Server
+            sudo -u ${real_user} git config submodule.recurse true
             echo "Downloaded the server"
             cd $(dirname $(readlink -f ../Server/server || realpath ../Server/server))
         fi
@@ -164,7 +168,7 @@ function run {
 
     if [[ "$no_protoc" == false ]]; then
         echo "Compiling protoc files"
-        protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer --python_out=.
+        sudo -u ${real_user} protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer --python_out=.
         echo "Compiled protoc files"
     else
         echo "Aborting protoc compilation"
@@ -181,7 +185,7 @@ function run {
         echo "Aborting PYTHONPATH definition"
     fi
 
-    nice -n${nice_value} python3 TensorflowServer/__init__.py "$@"
+    sudo -u ${real_user} nice -n${nice_value} python3 TensorflowServer/__init__.py "$@"
 }
 
 run "$@";
