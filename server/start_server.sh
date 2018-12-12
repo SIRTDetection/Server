@@ -59,57 +59,64 @@ function parseArgs {
 
 function checkNecessaryPackages {
     echo "Checking for necessary packages to be installed..."
-    dpkg -s protobuf-compiler & > /dev/null 2>&1
+    PROTOBUF_OK=$(dpkg-query -W --showformat='${Status}\n' protobuf-compiler|grep "install ok installed")
+#    dpkg -s protobuf-compiler & > /dev/null 2>&1
 
-    if [[ ! $? -eq 0 ]]; then
+    if [[ "" == "$PROTOBUF_OK" ]]; then
         echo "Protoc is not installed - installing..."
         sudo apt install protobuf-compiler -y
         echo "Protoc installed!"
     fi
 
-    dpkg -s python3 & > /dev/null 2>&1
+    PYTHON3_OK=$(dpkg-query -W --showformat='${Status}\n' python3|grep "install ok installed")
+#    dpkg -s python3 & > /dev/null 2>&1
 
-    if [[ ! $? -eq 0 ]]; then
+    if [[ "" == "$PYTHON3_OK" ]]; then
         echo "Python3 is not installed - installing..."
         sudo apt install --install-suggests python3 -y
         echo "Python3 installed!"
     fi
 
-    dpkg -s python3-pip & > /dev/null 2>&1
+    PYTHON3_PIP_OK=$(dpkg-query -W --showformat='${Status}\n' python3-pip|grep "install ok installed")
+#    dpkg -s python3-pip & > /dev/null 2>&1
 
-    if [[ ! $? -eq 0 ]]; then
+    if [[ "" == "$PYTHON3_PIP_OK" ]]; then
         echo "PIP3 is not installed - installing..."
         sudo apt install --install-suggests python3-pip -y
         echo "PIP3 installed!"
     fi
 
-    dpkg -s python3-pil & > /dev/null 2>&1
+    PYTHON3_PIL_OK=$(dpkg-query -W --showformat='${Status}\n' python3-pil|grep "install ok installed")
+#    dpkg -s python3-pil & > /dev/null 2>&1
 
-    if [[ ! $? -eq 0 ]]; then
+    if [[ "" == "$PYTHON3_PIL_OK" ]]; then
         echo "Python 3 PIL is not installed - installing..."
         sudo apt install python3-pil -y
         echo "Python3 PIL installed!"
     fi
 
-    dpkg -s python3-lxml & > /dev/null 2>&1
+    PYTHON3_LXML_OK=$(dpkg-query -W --showformat='${Status}\n' python3-lxml|grep "install ok installed")
+#    dpkg -s python3-lxml & > /dev/null 2>&1
 
-    if [[ ! $? -eq 0 ]]; then
+    if [[ "" == "$PYTHON3_LXML_OK" ]]; then
         echo "Python 3 LXML is not installed - installing..."
         sudo apt install python3-lxml -y
         echo "Python 3 LXML installed!"
     fi
 
-    dpkg -s python3-tk & > /dev/null 2>&1
+    PYTHON3_TK_OK=$(dpkg-query -W --showformat='${Status}\n' python3-tk|grep "install ok installed")
+#    dpkg -s python3-tk & > /dev/null 2>&1
 
-    if [[ ! $? -eq 0 ]]; then
+    if [[ "" == "$PYTHON3_TK_OK" ]]; then
         echo "Python 3 TK is not installed - installing..."
         sudo apt install python3-tk -y
         echo "Python 3 TK installed!"
     fi
 
-    dpkg -s git & > /dev/null 2>&1
+    GIT_OK=$(dpkg-query -W --showformat='${Status}\n' git|grep "install ok installed")
+#    dpkg -s git & > /dev/null 2>&1
 
-    if [[ ! $? -eq 0 ]]; then
+    if [[ "" == "$PYTHON3_TK_OK" ]]; then
         echo "Git is not installed - installing..."
         sudo apt install git -y
         echo "Git installed!"
@@ -121,6 +128,9 @@ function checkNecessaryPackages {
 function run {
     parseArgs "$@"
     checkNecessaryPackages
+
+    echo "Packages checked!"
+    echo "$no_pip"
 
     if [[ "$no_pip" == false ]]; then
         echo "Looking for installations/upgrades on PIP necessary packages"
@@ -134,6 +144,7 @@ function run {
     else
         echo "Aborting PIP packages installation"
     fi
+    echo "$no_update"
 
     if [[ "$no_update" == false ]]; then
         if [[ -d "../.git" ]]; then
@@ -149,6 +160,8 @@ function run {
         fi
     fi
 
+    echo "$no_protoc"
+
     if [[ "$no_protoc" == false ]]; then
         echo "Compiling protoc files"
         protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer --python_out=.
@@ -156,6 +169,8 @@ function run {
     else
         echo "Aborting protoc compilation"
     fi
+
+    echo "$no_pypath"
 
     if [[ "$no_pypath" == false ]]; then
         echo "Exporting PYTHONPATH"
