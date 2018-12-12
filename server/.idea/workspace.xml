@@ -36,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/start_server.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="499">
-              <caret line="111" column="12" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="12" />
+            <state relative-caret-position="-95">
+              <caret line="118" column="41" selection-start-line="118" selection-start-column="41" selection-end-line="118" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -280,7 +280,7 @@
       <option name="presentableId" value="Default" />
       <updated>1543918422700</updated>
       <workItem from="1543918464064" duration="5972000" />
-      <workItem from="1543998304620" duration="58267000" />
+      <workItem from="1543998304620" duration="59677000" />
     </task>
     <task id="LOCAL-00001" summary="Included model files - initial setup">
       <created>1543920448165</created>
@@ -590,11 +590,25 @@
       <option name="project" value="LOCAL" />
       <updated>1544471986319</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Changed conditions and force installation">
+      <created>1544602971452</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1544602971452</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Running in background">
+      <created>1544603117997</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1544603117997</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64239000" />
+    <option name="totallyTimeSpent" value="65649000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -641,8 +655,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Added label map" />
-    <MESSAGE value="Updated Flask WebHook" />
     <MESSAGE value="WebHook functions inside global file" />
     <MESSAGE value="Updated token detection" />
     <MESSAGE value="Printing to console" />
@@ -666,7 +678,9 @@
     <MESSAGE value="Reverting to old session object - memory leaks" />
     <MESSAGE value="Bash script finished" />
     <MESSAGE value="Included option to also clone the submodule and update them" />
-    <option name="LAST_COMMIT_MESSAGE" value="Included option to also clone the submodule and update them" />
+    <MESSAGE value="Changed conditions and force installation" />
+    <MESSAGE value="Running in background" />
+    <option name="LAST_COMMIT_MESSAGE" value="Running in background" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -907,8 +921,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/start_server.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="111" column="12" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="12" />
+        <state relative-caret-position="-95">
+          <caret line="118" column="41" selection-start-line="118" selection-start-column="41" selection-end-line="118" selection-end-column="41" />
         </state>
       </provider>
     </entry>
