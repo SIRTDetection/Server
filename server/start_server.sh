@@ -4,7 +4,7 @@
 ## for arguments parser
 
 # Abort on error
-set -e
+#set -e
 
 function usage {
     echo "Usage: start_server.sh [OPTIONS] [SERVER OPTIONS]";

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="411a4143-7378-4476-886e-1fe568fe5ba8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start_server.sh" beforeDir="false" afterPath="$PROJECT_DIR$/start_server.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/start_server.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-95">
-              <caret line="118" column="41" selection-start-line="118" selection-start-column="41" selection-end-line="118" selection-end-column="41" />
+            <state relative-caret-position="189">
+              <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -280,7 +281,7 @@
       <option name="presentableId" value="Default" />
       <updated>1543918422700</updated>
       <workItem from="1543918464064" duration="5972000" />
-      <workItem from="1543998304620" duration="59677000" />
+      <workItem from="1543998304620" duration="60900000" />
     </task>
     <task id="LOCAL-00001" summary="Included model files - initial setup">
       <created>1543920448165</created>
@@ -604,11 +605,32 @@
       <option name="project" value="LOCAL" />
       <updated>1544603117997</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Updated package checking method">
+      <created>1544604612697</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1544604612697</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Updated package checking method">
+      <created>1544604659678</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1544604659678</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Updated script permissions">
+      <created>1544605352700</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1544605352700</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65649000" />
+    <option name="totallyTimeSpent" value="66872000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -655,8 +677,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="WebHook functions inside global file" />
-    <MESSAGE value="Updated token detection" />
     <MESSAGE value="Printing to console" />
     <MESSAGE value="Tensorflow inference updated - removed little error on generating the output" />
     <MESSAGE value="Tensorflow worker redone - now uses a different training model" />
@@ -680,7 +700,9 @@
     <MESSAGE value="Included option to also clone the submodule and update them" />
     <MESSAGE value="Changed conditions and force installation" />
     <MESSAGE value="Running in background" />
-    <option name="LAST_COMMIT_MESSAGE" value="Running in background" />
+    <MESSAGE value="Updated package checking method" />
+    <MESSAGE value="Updated script permissions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated script permissions" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -921,8 +943,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/start_server.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-95">
-          <caret line="118" column="41" selection-start-line="118" selection-start-column="41" selection-end-line="118" selection-end-column="41" />
+        <state relative-caret-position="189">
+          <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
         </state>
       </provider>
     </entry>
