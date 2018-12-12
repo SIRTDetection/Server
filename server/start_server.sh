@@ -59,53 +59,60 @@ function parseArgs {
 
 function checkNecessaryPackages {
     echo "Checking for necessary packages to be installed..."
-    dpkg -s protobuf-compiler & > /dev/null
+    dpkg -s protobuf-compiler > /dev/null 2>&1
 
-    if [[ $? -eq 0 ]]; then
+    if [[ ! $? -eq 0 ]]; then
         echo "Protoc is not installed - installing..."
-        sudo apt install protobuf-compiler
+        sudo apt install protobuf-compiler -y
+        echo "Protoc installed!"
     fi
 
-    dpkg -s python3 & > /dev/null
+    dpkg -s python3 > /dev/null 2>&1
 
-    if [[ $? -eq 0 ]]; then
+    if [[ ! $? -eq 0 ]]; then
         echo "Python3 is not installed - installing..."
-        sudo apt install --install-suggests python3
+        sudo apt install --install-suggests python3 -y
+        echo "Python3 installed!"
     fi
 
-    dpkg -s python3-pip & > /dev/null
+    dpkg -s python3-pip > /dev/null 2>&1
 
-    if [[ $? -eq 0 ]]; then
+    if [[ ! $? -eq 0 ]]; then
         echo "PIP3 is not installed - installing..."
-        sudo apt install --install-suggests python3-pip
+        sudo apt install --install-suggests python3-pip -y
+        echo "PIP3 installed!"
     fi
 
-    dpkg -s python3-pil & > /dev/null
+    dpkg -s python3-pil > /dev/null 2>&1
 
-    if [[ $? -eq 0 ]]; then
+    if [[ ! $? -eq 0 ]]; then
         echo "Python 3 PIL is not installed - installing..."
-        sudo apt install python3-pil
+        sudo apt install python3-pil -y
+        echo "Python3 PIL installed!"
     fi
 
-    dpkg -s python3-lxml & > /dev/null
+    dpkg -s python3-lxml > /dev/null 2>&1
 
-    if [[ $? -eq 0 ]]; then
+    if [[ ! $? -eq 0 ]]; then
         echo "Python 3 LXML is not installed - installing..."
-        sudo apt install python3-lxml
+        sudo apt install python3-lxml -y
+        echo "Python 3 LXML installed!"
     fi
 
-    dpkg -s python3-tk & > /dev/null
+    dpkg -s python3-tk > /dev/null 2>&1
 
-    if [[ $? -eq 0 ]]; then
+    if [[ ! $? -eq 0 ]]; then
         echo "Python 3 TK is not installed - installing..."
-        sudo apt install python3-tk
+        sudo apt install python3-tk -y
+        echo "Python 3 TK installed!"
     fi
 
-    dpkg -s git & > /dev/null
+    dpkg -s git > /dev/null 2>&1
 
-    if [[ $? -eq 0 ]]; then
+    if [[ ! $? -eq 0 ]]; then
         echo "Git is not installed - installing..."
-        sudo apt install git
+        sudo apt install git -y
+        echo "Git installed!"
     fi
 
     echo "All necessary packages are installed"
