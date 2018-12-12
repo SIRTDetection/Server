@@ -59,7 +59,7 @@ function parseArgs {
 
 function checkNecessaryPackages {
     echo "Checking for necessary packages to be installed..."
-    dpkg -s protobuf-compiler > /dev/null 2>&1
+    dpkg -s protobuf-compiler & > /dev/null 2>&1
 
     if [[ ! $? -eq 0 ]]; then
         echo "Protoc is not installed - installing..."
@@ -67,7 +67,7 @@ function checkNecessaryPackages {
         echo "Protoc installed!"
     fi
 
-    dpkg -s python3 > /dev/null 2>&1
+    dpkg -s python3 & > /dev/null 2>&1
 
     if [[ ! $? -eq 0 ]]; then
         echo "Python3 is not installed - installing..."
@@ -75,7 +75,7 @@ function checkNecessaryPackages {
         echo "Python3 installed!"
     fi
 
-    dpkg -s python3-pip > /dev/null 2>&1
+    dpkg -s python3-pip & > /dev/null 2>&1
 
     if [[ ! $? -eq 0 ]]; then
         echo "PIP3 is not installed - installing..."
@@ -83,7 +83,7 @@ function checkNecessaryPackages {
         echo "PIP3 installed!"
     fi
 
-    dpkg -s python3-pil > /dev/null 2>&1
+    dpkg -s python3-pil & > /dev/null 2>&1
 
     if [[ ! $? -eq 0 ]]; then
         echo "Python 3 PIL is not installed - installing..."
@@ -91,7 +91,7 @@ function checkNecessaryPackages {
         echo "Python3 PIL installed!"
     fi
 
-    dpkg -s python3-lxml > /dev/null 2>&1
+    dpkg -s python3-lxml & > /dev/null 2>&1
 
     if [[ ! $? -eq 0 ]]; then
         echo "Python 3 LXML is not installed - installing..."
@@ -99,7 +99,7 @@ function checkNecessaryPackages {
         echo "Python 3 LXML installed!"
     fi
 
-    dpkg -s python3-tk > /dev/null 2>&1
+    dpkg -s python3-tk & > /dev/null 2>&1
 
     if [[ ! $? -eq 0 ]]; then
         echo "Python 3 TK is not installed - installing..."
@@ -107,7 +107,7 @@ function checkNecessaryPackages {
         echo "Python 3 TK installed!"
     fi
 
-    dpkg -s git > /dev/null 2>&1
+    dpkg -s git & > /dev/null 2>&1
 
     if [[ ! $? -eq 0 ]]; then
         echo "Git is not installed - installing..."

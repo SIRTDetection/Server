@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="411a4143-7378-4476-886e-1fe568fe5ba8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../models" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/bashsupport_project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitmodules" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start_server.sh" beforeDir="false" afterPath="$PROJECT_DIR$/start_server.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/start_server.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="602">
-              <caret line="163" column="9" selection-start-line="163" selection-start-column="9" selection-end-line="163" selection-end-column="9" />
+            <state relative-caret-position="499">
+              <caret line="111" column="12" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -100,6 +96,7 @@
       <find>from object_detection</find>
       <find>==.*</find>
       <find>, args, kwarg</find>
+      <find>git clone</find>
     </findStrings>
     <replaceStrings>
       <replace>from TensorflowServer.object_detection</replace>
@@ -283,7 +280,7 @@
       <option name="presentableId" value="Default" />
       <updated>1543918422700</updated>
       <workItem from="1543918464064" duration="5972000" />
-      <workItem from="1543998304620" duration="56702000" />
+      <workItem from="1543998304620" duration="58267000" />
     </task>
     <task id="LOCAL-00001" summary="Included model files - initial setup">
       <created>1543920448165</created>
@@ -579,11 +576,25 @@
       <option name="project" value="LOCAL" />
       <updated>1544449376808</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Bash script finished">
+      <created>1544471804881</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1544471804881</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Included option to also clone the submodule and update them">
+      <created>1544471986319</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1544471986319</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62674000" />
+    <option name="totallyTimeSpent" value="64239000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -630,8 +641,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="URL print" />
-    <MESSAGE value="URL error solved" />
     <MESSAGE value="Added label map" />
     <MESSAGE value="Updated Flask WebHook" />
     <MESSAGE value="WebHook functions inside global file" />
@@ -655,7 +664,9 @@
     <MESSAGE value="Flask threaded update - under testings" />
     <MESSAGE value="Included session graph before executing" />
     <MESSAGE value="Reverting to old session object - memory leaks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reverting to old session object - memory leaks" />
+    <MESSAGE value="Bash script finished" />
+    <MESSAGE value="Included option to also clone the submodule and update them" />
+    <option name="LAST_COMMIT_MESSAGE" value="Included option to also clone the submodule and update them" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -896,8 +907,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/start_server.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
-          <caret line="163" column="9" selection-start-line="163" selection-start-column="9" selection-end-line="163" selection-end-column="9" />
+        <state relative-caret-position="499">
+          <caret line="111" column="12" selection-start-line="111" selection-start-column="12" selection-end-line="111" selection-end-column="12" />
         </state>
       </provider>
     </entry>
