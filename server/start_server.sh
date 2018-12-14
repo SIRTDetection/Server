@@ -134,21 +134,6 @@ function run {
     checkNecessaryPackages
 
     echo "Packages checked!"
-    echo "$no_pip"
-
-    if [[ "$no_pip" == false ]]; then
-        echo "Looking for installations/upgrades on PIP necessary packages"
-        if [[ $EUID -ne 0 ]]; then
-            echo "Running as root - installing PIP packages globally"
-            pip3 install -r requirements.txt --upgrade --quiet
-#        else
-#            echo "Running in user-mode - installing PIP packages locally"
-#            pip3 install -r requirements.txt --upgrade --user --quiet
-        fi
-    else
-        echo "Aborting PIP packages installation"
-    fi
-    echo "$no_update"
 
     if [[ "$no_update" == false ]]; then
         if [[ -d "../.git" ]]; then
@@ -157,14 +142,23 @@ function run {
             echo "Obtained the latest updates"
         else
             echo "Downloading the server..."
-            sudo -u ${real_user} git clone --recurse-submodules https://github.com/SIRTDetection/Server.git ../Server
+            sudo -u ${real_user} git clone --recursive https://github.com/SIRTDetection/Server.git && pushd ./Server/server
             sudo -u ${real_user} git config submodule.recurse true
             echo "Downloaded the server"
-            cd $(dirname $(readlink -f ../Server/server || realpath ../Server/server))
+#            cd $(dirname $(readlink -f ../Server/server || realpath ../Server/server))
         fi
     fi
 
-    echo "$no_protoc"
+    if [[ "$no_pip" == false ]]; then
+        echo "Looking for installations/upgrades on PIP necessary packages"
+        if [[ $EUID -ne 0 ]]; then
+            echo "Running as root - installing PIP packages globally"
+            pip3 install -r requirements.txt --upgrade --quiet
+        fi
+    else
+        echo "Aborting PIP packages installation"
+    fi
+
 
     if [[ "$no_protoc" == false ]]; then
         echo "Compiling protoc files"
@@ -173,8 +167,6 @@ function run {
     else
         echo "Aborting protoc compilation"
     fi
-
-    echo "$no_pypath"
 
     if [[ "$no_pypath" == false ]]; then
         echo "Exporting PYTHONPATH"
