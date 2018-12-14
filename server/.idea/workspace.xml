@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="411a4143-7378-4476-886e-1fe568fe5ba8" name="Default Changelist" comment="Updated pip3 installation method">
+    <list default="true" id="411a4143-7378-4476-886e-1fe568fe5ba8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start_server.sh" beforeDir="false" afterPath="$PROJECT_DIR$/start_server.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/start_server.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="166" column="20" selection-start-line="166" selection-start-column="20" selection-end-line="166" selection-end-column="20" />
+            <state relative-caret-position="356">
+              <caret line="190" column="44" selection-start-line="190" selection-start-column="44" selection-end-line="190" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -288,21 +287,7 @@
       <updated>1543918422700</updated>
       <workItem from="1543918464064" duration="5972000" />
       <workItem from="1543998304620" duration="63278000" />
-      <workItem from="1544775020628" duration="3110000" />
-    </task>
-    <task id="LOCAL-00004" summary="Test class">
-      <created>1543999576311</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1543999576311</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Created webhook - first approximation">
-      <created>1544003007464</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1544003007464</updated>
+      <workItem from="1544775020628" duration="4769000" />
     </task>
     <task id="LOCAL-00006" summary="Server offering images - webhook class">
       <created>1544010328718</created>
@@ -633,11 +618,25 @@
       <option name="project" value="LOCAL" />
       <updated>1544777493092</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Updated dpkg package names and pip3 installation method">
+      <created>1544778318726</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1544778318726</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Updated protobuf and names">
+      <created>1544779415304</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1544779415304</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72360000" />
+    <option name="totallyTimeSpent" value="74019000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -684,8 +683,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Misspelled name" />
-    <MESSAGE value="Adapted function to reduce image size" />
     <MESSAGE value="Updated width &amp; height" />
     <MESSAGE value="Image resizing using PIL.Image.resize" />
     <MESSAGE value="Defined possible available loggers" />
@@ -709,7 +706,9 @@
     <MESSAGE value="Edited &quot;start_server.sh&quot; - corrected git recursion for cloning" />
     <MESSAGE value="Protobuf manual instalation" />
     <MESSAGE value="Protobuf manual installation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Protobuf manual installation" />
+    <MESSAGE value="Updated dpkg package names and pip3 installation method" />
+    <MESSAGE value="Updated protobuf and names" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated protobuf and names" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -948,8 +947,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/start_server.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="166" column="20" selection-start-line="166" selection-start-column="20" selection-end-line="166" selection-end-column="20" />
+        <state relative-caret-position="356">
+          <caret line="190" column="44" selection-start-line="190" selection-start-column="44" selection-end-line="190" selection-end-column="44" />
         </state>
       </provider>
     </entry>

@@ -153,13 +153,11 @@ function run {
             sudo -u ${real_user} git clone --recursive https://github.com/SIRTDetection/Server.git && pushd ./Server/server > /dev/null
             sudo -u ${real_user} git config submodule.recurse true
             echo "Downloaded the server"
-#            cd $(dirname $(readlink -f ../Server/server || realpath ../Server/server))
         fi
     fi
 
     if [[ "$no_pip" == false ]]; then
         echo "Looking for installations/upgrades on PIP necessary packages"
-        echo "Running as root - installing PIP packages globally"
         if sudo -H pip3 install -r requirements.txt --upgrade --quiet; then
             echo "Installed pip packages"
         else
