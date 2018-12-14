@@ -115,7 +115,7 @@ function checkNecessaryPackages {
         echo "Git installed!"
     fi
 
-    UNZIP_OK=$(dpkg-query -W --showformat='${Status}\n' git|grep "install ok installed")
+    UNZIP_OK=$(dpkg-query -W --showformat='${Status}\n' unzip|grep "install ok installed")
 
     if [[ "" == "$UNZIP_OK" ]]; then
         echo "Git is not installed - installing..."
@@ -160,7 +160,12 @@ function run {
     if [[ "$no_pip" == false ]]; then
         echo "Looking for installations/upgrades on PIP necessary packages"
         echo "Running as root - installing PIP packages globally"
-        pip3 install -r requirements.txt --upgrade --quiet
+        if pip3 install -r requirements.txt --upgrade --quiet; then
+            echo "Installed pip packages"
+        else
+            echo "Error while installing pip packages - trying with -H"
+            sudo -H pip3 install -r requirements.txt --upgrade --quiet
+        fi
     else
         echo "Aborting PIP packages installation"
     fi

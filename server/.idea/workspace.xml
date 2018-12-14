@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="411a4143-7378-4476-886e-1fe568fe5ba8" name="Default Changelist" comment="">
+    <list default="true" id="411a4143-7378-4476-886e-1fe568fe5ba8" name="Default Changelist" comment="Updated pip3 installation method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/start_server.sh" beforeDir="false" afterPath="$PROJECT_DIR$/start_server.sh" afterDir="false" />
     </list>
@@ -37,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/start_server.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="155" column="62" selection-start-line="155" selection-start-column="62" selection-end-line="155" selection-end-column="62" />
+            <state relative-caret-position="203">
+              <caret line="166" column="20" selection-start-line="166" selection-start-column="20" selection-end-line="166" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -76,8 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="306">
+              <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -288,21 +288,7 @@
       <updated>1543918422700</updated>
       <workItem from="1543918464064" duration="5972000" />
       <workItem from="1543998304620" duration="63278000" />
-      <workItem from="1544775020628" duration="671000" />
-    </task>
-    <task id="LOCAL-00002" summary="Program initial configuration - arguments and functions">
-      <created>1543924337372</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1543924337372</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Included requirements file">
-      <created>1543999455009</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1543999455009</updated>
+      <workItem from="1544775020628" duration="3110000" />
     </task>
     <task id="LOCAL-00004" summary="Test class">
       <created>1543999576311</created>
@@ -633,11 +619,25 @@
       <option name="project" value="LOCAL" />
       <updated>1544605971095</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Edited &quot;start_server.sh&quot; - corrected git recursion for cloning">
+      <created>1544775727999</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1544775727999</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Protobuf manual installation">
+      <created>1544777493092</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1544777493092</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69921000" />
+    <option name="totallyTimeSpent" value="72360000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -652,7 +652,7 @@
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25637585" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25637585" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -668,7 +668,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3297587" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3297587" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3297587" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.3297587" />
+      <window_info active="true" anchor="bottom" id="Messages" order="13" visible="true" weight="0.3297587" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -684,9 +684,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Tensorflow inference updated - removed little error on generating the output" />
-    <MESSAGE value="Tensorflow worker redone - now uses a different training model" />
-    <MESSAGE value="Missing attribute" />
     <MESSAGE value="Misspelled name" />
     <MESSAGE value="Adapted function to reduce image size" />
     <MESSAGE value="Updated width &amp; height" />
@@ -709,7 +706,10 @@
     <MESSAGE value="Updated package checking method" />
     <MESSAGE value="Updated script permissions" />
     <MESSAGE value="Removed &quot;abort on error&quot; directive" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed &quot;abort on error&quot; directive" />
+    <MESSAGE value="Edited &quot;start_server.sh&quot; - corrected git recursion for cloning" />
+    <MESSAGE value="Protobuf manual instalation" />
+    <MESSAGE value="Protobuf manual installation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Protobuf manual installation" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -941,15 +941,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="306">
+          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/start_server.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="155" column="62" selection-start-line="155" selection-start-column="62" selection-end-line="155" selection-end-column="62" />
+        <state relative-caret-position="203">
+          <caret line="166" column="20" selection-start-line="166" selection-start-column="20" selection-end-line="166" selection-end-column="20" />
         </state>
       </provider>
     </entry>
