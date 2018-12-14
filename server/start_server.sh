@@ -118,9 +118,9 @@ function checkNecessaryPackages {
     UNZIP_OK=$(dpkg-query -W --showformat='${Status}\n' unzip|grep "install ok installed")
 
     if [[ "" == "$UNZIP_OK" ]]; then
-        echo "Git is not installed - installing..."
+        echo "UnZip is not installed - installing..."
         apt install unzip -y
-        echo "Git installed!"
+        echo "UnZip installed!"
     fi
 
     echo "All necessary packages are installed"
@@ -160,11 +160,11 @@ function run {
     if [[ "$no_pip" == false ]]; then
         echo "Looking for installations/upgrades on PIP necessary packages"
         echo "Running as root - installing PIP packages globally"
-        if pip3 install -r requirements.txt --upgrade --quiet; then
+        if sudo -H pip3 install -r requirements.txt --upgrade --quiet; then
             echo "Installed pip packages"
         else
-            echo "Error while installing pip packages - trying with -H"
-            sudo -H pip3 install -r requirements.txt --upgrade --quiet
+            echo "Error while installing pip packages - trying alternative way"
+            pip3 install -r requirements.txt --upgrade --quiet
         fi
     else
         echo "Aborting PIP packages installation"
@@ -179,18 +179,18 @@ function run {
             echo "There was an error compiling protoc files. Trying alternative way"
             sudo apt remove protobuf-compiler -y
             wget -O protobuf.zip https://github.com/google/protobuf/releases/download/v3.0.0/protoc-3.0.0-linux-x86_64.zip
-            unzip protobuf.zip
-            pushd protobuf
-            ./configure
-            make -j4
-            make check -j4
-            make install -j4
-            ldconfig
-            echo "Installed protoc manually"
-            popd
+            unzip protobuf.zip -d protobuf
+#            pushd protobuf
+#            ./configure
+#            make -j4
+#            make check -j4
+#            make install -j4
+#            ldconfig
+#            echo "Installed protoc manually"
+#            popd
+            sudo -u ${real_user} ./protobuf/bin/protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer --python_out=.
             rm -r protobuf
             rm -r protobuf.zip
-            sudo -u ${real_user} protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer --python_out=.
         fi
     else
         echo "Aborting protoc compilation"
