@@ -176,16 +176,8 @@ function run {
         else
             echo "There was an error compiling protoc files. Trying alternative way"
             sudo apt remove protobuf-compiler -y
-            wget -O protobuf.zip https://github.com/google/protobuf/releases/download/v3.0.0/protoc-3.0.0-linux-x86_64.zip
-            unzip protobuf.zip -d protobuf
-#            pushd protobuf
-#            ./configure
-#            make -j4
-#            make check -j4
-#            make install -j4
-#            ldconfig
-#            echo "Installed protoc manually"
-#            popd
+            sudo -u ${real_user} wget -O protobuf.zip https://github.com/google/protobuf/releases/download/v3.0.0/protoc-3.0.0-linux-x86_64.zip
+            sudo -u ${real_user} unzip protobuf.zip -d protobuf
             sudo -u ${real_user} ./protobuf/bin/protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer --python_out=.
             rm -r protobuf
             rm -r protobuf.zip
