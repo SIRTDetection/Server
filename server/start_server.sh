@@ -109,9 +109,17 @@ function checkNecessaryPackages {
 
     GIT_OK=$(dpkg-query -W --showformat='${Status}\n' git|grep "install ok installed")
 
-    if [[ "" == "$PYTHON3_TK_OK" ]]; then
+    if [[ "" == "$GIT_OK" ]]; then
         echo "Git is not installed - installing..."
         apt install git -y
+        echo "Git installed!"
+    fi
+
+    UNZIP_OK=$(dpkg-query -W --showformat='${Status}\n' git|grep "install ok installed")
+
+    if [[ "" == "$UNZIP_OK" ]]; then
+        echo "Git is not installed - installing..."
+        apt install unzip -y
         echo "Git installed!"
     fi
 
@@ -142,7 +150,7 @@ function run {
             echo "Obtained the latest updates"
         else
             echo "Downloading the server..."
-            sudo -u ${real_user} git clone --recursive https://github.com/SIRTDetection/Server.git && pushd ./Server/server
+            sudo -u ${real_user} git clone --recursive https://github.com/SIRTDetection/Server.git && pushd ./Server/server > /dev/null
             sudo -u ${real_user} git config submodule.recurse true
             echo "Downloaded the server"
 #            cd $(dirname $(readlink -f ../Server/server || realpath ../Server/server))
@@ -151,10 +159,8 @@ function run {
 
     if [[ "$no_pip" == false ]]; then
         echo "Looking for installations/upgrades on PIP necessary packages"
-        if [[ $EUID -ne 0 ]]; then
-            echo "Running as root - installing PIP packages globally"
-            pip3 install -r requirements.txt --upgrade --quiet
-        fi
+        echo "Running as root - installing PIP packages globally"
+        pip3 install -r requirements.txt --upgrade --quiet
     else
         echo "Aborting PIP packages installation"
     fi
@@ -162,8 +168,25 @@ function run {
 
     if [[ "$no_protoc" == false ]]; then
         echo "Compiling protoc files"
-        sudo -u ${real_user} protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer --python_out=.
-        echo "Compiled protoc files"
+        if sudo -u ${real_user} protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer --python_out=.; then
+            echo "Compiled protoc files"
+        else
+            echo "There was an error compiling protoc files. Trying alternative way"
+            sudo apt remove protobuf-compiler -y
+            wget -O protobuf.zip https://github.com/google/protobuf/releases/download/v3.0.0/protoc-3.0.0-linux-x86_64.zip
+            unzip protobuf.zip
+            pushd protobuf
+            ./configure
+            make -j4
+            make check -j4
+            make install -j4
+            ldconfig
+            echo "Installed protoc manually"
+            popd
+            rm -r protobuf
+            rm -r protobuf.zip
+            sudo -u ${real_user} protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer --python_out=.
+        fi
     else
         echo "Aborting protoc compilation"
     fi
@@ -171,7 +194,7 @@ function run {
     if [[ "$no_pypath" == false ]]; then
         echo "Exporting PYTHONPATH"
         RESEARCH=dirname $(readlink -f ../models/research || realpath ../models/research)
-        export PYTHONPATH=${PYTHONPATH}:${RESEARCH}:${RESEARCH}/slim
+        export PYTHONPATH=$PYTHONPATH:$RESEARCH:$RESEARCH/slim
         echo "Exported PYTHONPATH"
     else
         echo "Aborting PYTHONPATH definition"
