@@ -1,1 +1,1 @@
-from TensorflowServer import *
+from . import *
