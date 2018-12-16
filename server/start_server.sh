@@ -188,8 +188,8 @@ function run {
 
     if [[ "$no_pypath" == false ]]; then
         echo "Exporting PYTHONPATH"
-        RESEARCH=dirname $(readlink -f ../models/research || realpath ../models/research)
-        export PYTHONPATH=$PYTHONPATH:$RESEARCH:$RESEARCH/slim
+        RESEARCH=$(readlink -f ../models/research || realpath ../models/research)
+        export PYTHONPATH=${PYTHONPATH}:${RESEARCH}:${RESEARCH}/slim
         echo "Exported PYTHONPATH"
     else
         echo "Aborting PYTHONPATH definition"
