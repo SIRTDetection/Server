@@ -195,7 +195,7 @@ function run {
         echo "Aborting PYTHONPATH definition"
     fi
 
-    sudo -u ${real_user} nice -n${nice_value} python3 TensorflowServer/__init__.py "$@"
+    sudo -H -E -P -u ${real_user} nice -n${nice_value} python3 TensorflowServer/__init__.py "$@"
 }
 
 run "$@";
