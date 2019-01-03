@@ -171,14 +171,14 @@ function run {
 
     if [[ "$no_protoc" == false ]]; then
         echo "Compiling protoc files"
-        if sudo -u ${real_user} protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer --python_out=.; then
+        if sudo -u ${real_user} protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer/ --python_out=TensorflowServer/; then
             echo "Compiled protoc files"
         else
             echo "There was an error compiling protoc files. Trying alternative way"
             sudo apt remove protobuf-compiler -y
             sudo -u ${real_user} wget -O protobuf.zip https://github.com/google/protobuf/releases/download/v3.0.0/protoc-3.0.0-linux-x86_64.zip
             sudo -u ${real_user} unzip protobuf.zip -d protobuf
-            sudo -u ${real_user} ./protobuf/bin/protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer --python_out=.
+            sudo -u ${real_user} ./protobuf/bin/protoc TensorflowServer/object_detection/protos/*.proto --proto_path=TensorflowServer/ --python_out=TensorflowServer/
             rm -r protobuf
             rm -r protobuf.zip
         fi
