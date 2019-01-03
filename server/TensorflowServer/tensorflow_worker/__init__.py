@@ -135,8 +135,7 @@ class Worker(Tensorflow):
         def _resize_image(image, new_width: int = 1280) -> Image:
             from io import BytesIO
 
-            image_data = BytesIO(image)
-            pil_image = Image.open(image_data)
+            pil_image = Image.open(image)
             img_width, img_height = pil_image.size
             if img_width > 1280:
                 wp_percent = float(new_width / float(img_width))

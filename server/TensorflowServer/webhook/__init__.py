@@ -126,10 +126,13 @@ def _handleImages():
     _log.debug("Latest connection: {}".format(_clients[uuid]["latest_connection"]
                                               .strftime("%H:%M:%S %Z @ %Y/%m/%d")))
     _updateFiles()
-    str_img = request.data
+    image_file = request.files["picture"]
+    source_image_io = BytesIO()
+    image_file.save(source_image_io)
+    source_image_io.seek(0)
     _log.debug("Starting object inference...")
     start_time = clock()
-    image_with_boxes = _tf.detect_objects(str_img)
+    image_with_boxes = _tf.detect_objects(source_image_io)
     _log.debug("Inference took %.2f seconds" % (clock() - start_time))
     boxed_image = Image.fromarray(image_with_boxes, "RGB")
     image_io = BytesIO()
