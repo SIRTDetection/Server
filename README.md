@@ -7,12 +7,12 @@ Server side application for SIRT application - el *backend* para SIRTApp
 
 ## Índice
 
-1. [Introdución](#introducción)
-2. [Retos](#retos)
-3. [Dependencias](#dependencias)
-4. [Desarrollo](#desarrollo)
-5. [Instalación](#instalación)
-6. [Licencia](#licencia)
+1. [Introdución](#1-introducción)
+2. [Retos](#2-retos)
+3. [Dependencias](3-dependencias)
+4. [Desarrollo](#4-desarrollo)
+5. [Instalación](#5-instalación)
+6. [Licencia](#6-licencia)
 
 ------------------------
 
